@@ -21,8 +21,9 @@ const links = [
     <UHeader :links="links">
       <template #logo>
         <div class="flex items-center flex-row-reverse">
-          <a class="ml-3">Emanuel Carrero</a>
-          <NuxtImg width="592" height="789.33" alt="Logo portfolio Emanuel Carrero" src="logo.png" class="w-auto h-12" />
+          <a href="/" class="ml-3" aria-label="Ir al inicio de Emanuel Carrero">Inicio</a>
+          <NuxtImg format="webp" width="48" height="48" alt="Ir al inicio - Logo de Emanuel Carrero" src="logo.png"
+            class="w-auto h-12" />
         </div>
       </template>
     </UHeader>
@@ -35,6 +36,7 @@ const links = [
         </NuxtLayout>
       </UContainer>
     </UMain>
+    <UDivider />
     <UFooter>
       <template #left>
         Emanuel Carrero © {{ new Date().getFullYear() }}
