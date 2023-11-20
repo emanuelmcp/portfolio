@@ -16,7 +16,11 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "@iconify-json/simple-icons": "^1.1.78",
     "@nuxt/ui": "^2.10.0",
-    "@nuxt/ui-pro": "^0.4.2"
+    "@nuxt/ui-pro": "^0.4.2",
+    "install": "^0.13.0",
+    "openai": "^4.0.0"
   }
 }
