@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import emailjs from '@emailjs/browser';
+
 emailjs.init('-tWHTNZ51_rc1QH_f')
 
 const state = reactive({

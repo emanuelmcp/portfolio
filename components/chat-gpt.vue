@@ -6,7 +6,6 @@ interface Message {
 const value = ref('');
 const messages = ref<Message[]>([]);
 const isLoading = ref(false); // Nuevo estado para el indicador de carga
-const recommendedCuestion = useChatSuggestions()
 
 const sendMessage = async () => {
   const noRefMessage = value.value;
@@ -76,8 +75,8 @@ const sendMessage = async () => {
     <div class="clear-both"></div>
     <template #footer>
       <div class="flex items-center space-x-4">
-        <UInput v-model="value" class="flex-grow placeholder:italic" size="sm"
-          :placeholder="useChatSuggestions().content" />
+        <UInput v-model="value" class="flex-grow placeholder:italic" size="sm" :placeholder="useChatSuggestions().content"
+          @keyup.enter="sendMessage" />
         <UButton icon="i-heroicons-paper-airplane" size="sm" color="primary" square variant="solid"
           @click="sendMessage" />
       </div>

@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 const subject = defineModel('subject', { default: '', local: true, required: true })
 const email = defineModel('email', { default: '', local: true, required: true })
