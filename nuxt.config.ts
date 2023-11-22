@@ -19,7 +19,6 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     config: {
-      mode: "jit",
       theme: {
         extend: {
           animation: {
