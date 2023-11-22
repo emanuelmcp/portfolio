@@ -21,7 +21,7 @@ const links = [
     <UHeader :links="links">
       <template #logo>
         <div class="flex items-center flex-row-reverse">
-          <a href="/" class="ml-3" aria-label="Ir al inicio de Emanuel Carrero">Inicio</a>
+          <!-- <NuxtLink to="/" class="ml-3" aria-label="Ir al inicio de Emanuel Carrero">Inicio</NuxtLink> -->
           <NuxtImg format="webp" width="48" height="48" alt="Ir al inicio - Logo de Emanuel Carrero" src="logo.png"
             class="w-auto h-12" />
         </div>
@@ -31,9 +31,7 @@ const links = [
       wrapper: 'min-h-[calc(100vh-var(--header-height)-var(--footer-height))] flex-grow'
     }">
       <UContainer>
-        <NuxtLayout>
-          <NuxtPage />
-        </NuxtLayout>
+        <NuxtPage></NuxtPage>
       </UContainer>
     </UMain>
     <UDivider />
