@@ -16,6 +16,11 @@ export default defineNuxtConfig({
         propsDestructure: true,
       },
     },
+    build: {
+      rollupOptions: {
+        external: ["emanuel-carrero.webp"],
+      },
+    },
   },
   tailwindcss: {
     config: {
