@@ -15,7 +15,8 @@ useSeoMeta({
     <template #title>
       <h2>Experto en Desarrollo Fullstack</h2>
     </template>
-    <NuxtImg width="592" height="592" alt="Emanuel Carrero" format="webp" src="emanuel-carrero.png" class="rounded-md" />
+    <img height="592" alt="Emanuel Carrero" format="webp" src="emanuel-carrero.webp"
+      class="rounded-md object-scale-down h-592" />
   </UPageHero>
   <UPage>
     <TechSkills />
