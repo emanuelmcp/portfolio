@@ -9,8 +9,8 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "dark",
   },
-  routeRules: {
-    "/": { prerender: true },
+  generate: {
+    routes: ["/"],
   },
   vite: {
     vue: {
