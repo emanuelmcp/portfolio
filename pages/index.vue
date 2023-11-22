@@ -24,7 +24,7 @@ useSeoMeta({
 
 <style scoped>
 img {
-  width: 100%;
+  width: 498px;
   height: 592px;
   object-fit: cover;
 }
