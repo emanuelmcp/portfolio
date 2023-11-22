@@ -6,9 +6,6 @@ export default defineNuxtConfig({
   ui: {
     icons: ["simple-icons"],
   },
-  nitro: {
-    preset: "aws-amplify",
-  },
   colorMode: {
     preference: "dark",
   },
