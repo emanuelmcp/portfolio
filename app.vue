@@ -34,6 +34,7 @@ const links = [
         <NuxtPage></NuxtPage>
       </UContainer>
     </UMain>
+    <UNotifications />
     <UDivider />
     <UFooter>
       <template #left>

@@ -2,8 +2,12 @@
 import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
 import { contactFormSchema } from './contact-form.schema';
 import { z } from "zod";
+import emailjs from "@emailjs/browser"
 
-const formData = reactive({
+emailjs.init("OrkN_3XddhUHDig01");
+const toast = useToast()
+
+let formData = reactive({
   subject: '',
   email: '',
   numberPhone: '',
@@ -12,7 +16,26 @@ const formData = reactive({
 type Schema = z.output<typeof contactFormSchema>
 
 const onSubmit = (event: FormSubmitEvent<Schema>) => {
-  console.log('Form compoennt')
+  //toast.add({ title: 'Email enviado!' })
+  formData = reactive({
+    subject: '',
+    email: '',
+    numberPhone: '',
+    message: ''
+  })
+  const { data } = event;
+  emailjs.send('service_kwscmbw', 'template_ru1j11p', {
+    subject: data.subject,
+    phone: data.numberPhone,
+    reply_to: data.email,
+    message: data.message
+  })
+    .then(function (response) {
+      if (response.status != 200) toast.add({ title: 'Error, inténtelo más tarde', color: 'red' })
+      else toast.add({ title: 'Email enviado!' })
+    }, function (error) {
+      toast.add({ title: 'Error, inténtelo más tarde', color: 'red' })
+    });
 }
 
 </script>
