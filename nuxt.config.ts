@@ -4,10 +4,14 @@ export default defineNuxtConfig({
   extends: ["@nuxt/ui-pro"],
   modules: ["@nuxt/ui", "@nuxt/image"],
   ui: {
-    notifications: {
-      position: "lg:top-0 lg:justify-start",
-    },
     icons: ["simple-icons"],
+  },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "es",
+      },
+    },
   },
   colorMode: {
     preference: "dark",
