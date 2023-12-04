@@ -1,5 +1,4 @@
 import OpenAI from "openai";
-import { MessageContentText } from "openai/resources/beta/threads/messages/messages";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -14,11 +13,7 @@ export default defineEventHandler(async (event) => {
     // Una vez creado el hilo, inicia una ejecución (run) con el asistente
     const responseRunner = await runResponse(threadResponse.id);
     console.log("Response runner", responseRunner);
-    const messages = await waitForRunAndRetrieveMessages(
-      threadResponse.id,
-      responseRunner.id
-    );
-    // @ts-ignore
+    const messages = await waitForRunAndRetrieveMessages(threadResponse.id, responseRunner.id);
     const assistantMessage = messages[0].content[0].text.value;
     return { message: assistantMessage };
   } catch (error) {
@@ -43,14 +38,11 @@ const runResponse = async (threadId: string) => {
     threadId, // Aquí estaba el error. Usamos 'threadResponse.id' en lugar de 'threadResponse.data.id'
     {
       assistant_id: "asst_AUkhMKfLQR9XwToWSyFRnZBJ", // Usa el ID de tu asistente
-    }
+    },
   );
 };
 
-const waitForRunAndRetrieveMessages = async (
-  threadId: string,
-  runId: string
-) => {
+const waitForRunAndRetrieveMessages = async (threadId: string, runId: string) => {
   let runStatus = "queued";
   let runResponse;
   while (runStatus === "queued" || runStatus === "in_progress") {
@@ -60,9 +52,7 @@ const waitForRunAndRetrieveMessages = async (
     runResponse = await openai.beta.threads.runs.retrieve(threadId, runId);
     runStatus = runResponse.status;
     if (runStatus === "failed" || runStatus === "cancelled") {
-      throw new Error(
-        `Run did not complete successfully. Status: ${runStatus}`
-      );
+      throw new Error(`Run did not complete successfully. Status: ${runStatus}`);
     }
   }
   if (runStatus === "completed") {

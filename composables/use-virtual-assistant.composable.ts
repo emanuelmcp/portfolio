@@ -14,7 +14,7 @@ export const useVirtualAssistant = async () => {
         body: JSON.stringify({ role: "user", message: value.value }),
       });
       if (!response.ok) error.value = true;
-      const responseData = await response.json();
+      await response.json();
       isLoading.value = false;
     } catch (err) {
       error.value = true;
