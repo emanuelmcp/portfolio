@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ["@nuxt/ui-pro"],
   modules: ["@nuxt/ui", "@nuxt/image"],
+  css: ["~/assets/css/main.css"],
   ui: {
     icons: ["simple-icons"],
   },
@@ -28,6 +29,9 @@ export default defineNuxtConfig({
         external: ["emanuel-carrero.webp"],
       },
     },
+  },
+  imports: {
+    dirs: ["validation/**/*.ts", "models/**/*.ts"],
   },
   tailwindcss: {
     config: {

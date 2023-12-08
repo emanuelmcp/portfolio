@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Contacto - Emanuel Carrero, Desarrollador Fullstack",
+  title: "Contacto",
   description:
     "Ponte en contacto con Emanuel Carrero para explorar soluciones de desarrollo web personalizadas. Estoy disponible para consultas, proyectos potenciales y colaboraciones. Utiliza mi formulario de contacto o los detalles proporcionados para iniciar una conversación sobre cómo puedo ayudarte a convertir tu visión en una solución digital efectiva. Estoy comprometido a entender y satisfacer tus necesidades, asegurando resultados que superen tus expectativas.",
 });

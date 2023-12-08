@@ -2,48 +2,47 @@ export function useChatSuggestions() {
   const messages = [
     {
       author: "assistant",
-      content: "¿Cuál es tu lenguaje de programación favorito y por qué?",
+      content: "¿Tu lenguaje de programación favorito?",
     },
     {
       author: "assistant",
-      content: "¿Has trabajado con frameworks de JavaScript modernos como Vue o React?",
+      content: "¿Experiencia con Vue o React?",
     },
     {
       author: "assistant",
-      content: "¿Tienes experiencia con TypeScript y qué opinas sobre él comparado con JavaScript?",
+      content: "¿Opinión sobre TypeScript vs JavaScript?",
     },
     {
       author: "assistant",
-      content: "¿Cómo evalúas la conveniencia de usar Go en proyectos de back-end?",
+      content: "¿Usarías Go en back-end?",
     },
     {
       author: "assistant",
-      content:
-        "¿Has implementado aplicaciones utilizando el framework Spring y qué te parece frente a otras opciones como NestJS?",
+      content: "¿Experiencia con Spring vs NestJS?",
     },
     {
       author: "assistant",
-      content: "¿Prefieres trabajar en el front-end, back-end o te sientes cómodo en ambos?",
+      content: "¿Prefieres front-end, back-end o ambos?",
     },
     {
       author: "assistant",
-      content: "¿Qué framework de CSS prefieres utilizar en tus proyectos front-end?",
+      content: "¿Framework de CSS preferido?",
     },
     {
       author: "assistant",
-      content: "¿Tienes experiencia integrando bases de datos SQL en aplicaciones web?",
+      content: "¿Experiencia con bases de datos SQL?",
     },
     {
       author: "assistant",
-      content: "¿Has utilizado Nuxt para desarrollar aplicaciones universales con Vue?",
+      concontenttent: "¿Has usado Nuxt o Vue?",
     },
     {
       author: "assistant",
-      content: "¿Qué herramientas de desarrollo de software consideras indispensables en tu flujo de trabajo?",
+      content: "¿Herramientas esenciales en tu trabajo?",
     },
     {
       author: "assistant",
-      content: "¿Cómo te mantienes actualizado con las últimas tendencias y tecnologías en el desarrollo fullstack?",
+      content: "¿Cómo te actualizas en desarrollo fullstack?",
     },
   ];
   const randomIndex = Math.floor(Math.random() * messages.length);

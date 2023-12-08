@@ -1,24 +1,34 @@
-export const useVirtualAssistant = async () => {
+export async function useVirtualAssistant() {
   const value = ref("");
-  const error = ref(false);
+  const messages = ref<Message[]>([]);
   const isLoading = ref(false);
-
-  if (value.value.trim()) {
-    try {
-      isLoading.value = true;
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ role: "user", message: value.value }),
-      });
-      if (!response.ok) error.value = true;
-      await response.json();
+  const sendMessage = async () => {
+    const currentMessage = value.value.trim(); // Obtén el mensaje actual
+    if (currentMessage) {
+      messages.value.push({ author: "user", content: currentMessage });
+      isLoading.value = true; // Iniciar la carga
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ role: "user", message: currentMessage }),
+        });
+        if (!response.ok) {
+          throw new Error("Error en la respuesta del servidor");
+        }
+        const responseData = await response.json();
+        messages.value.push({ author: "assistant", content: responseData.message });
+      } catch (error) {}
       isLoading.value = false;
-    } catch (err) {
-      error.value = true;
     }
-    value.value = "";
-  }
-};
+  };
+
+  return {
+    sendMessage,
+    value,
+    messages,
+    isLoading,
+  };
+}
