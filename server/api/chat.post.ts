@@ -6,18 +6,14 @@ const openai = new OpenAI({
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  console.log(JSON.stringify(body));
   try {
     const threadResponse = await createThread(body.message);
-    console.log("Thread response", threadResponse);
     // Una vez creado el hilo, inicia una ejecución (run) con el asistente
     const responseRunner = await runResponse(threadResponse.id);
-    console.log("Response runner", responseRunner);
     const messages = await waitForRunAndRetrieveMessages(threadResponse.id, responseRunner.id);
     const assistantMessage = messages[0].content[0].text.value;
     return { message: assistantMessage };
   } catch (error) {
-    console.error("Error al obtener respuesta de GPT:", error);
     return createError({ statusCode: 500, message: "Server error" });
   }
 });
@@ -58,9 +54,6 @@ const waitForRunAndRetrieveMessages = async (threadId: string, runId: string) =>
   if (runStatus === "completed") {
     // Recuperar los mensajes del hilo
     const messagesResponse = await openai.beta.threads.messages.list(threadId);
-    messagesResponse.data.forEach((message, index) => {
-      console.log(`Message ${index}:`, JSON.stringify(message.content));
-    });
     return messagesResponse.data;
   } else {
     throw new Error("Run did not complete successfully.");
