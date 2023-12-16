@@ -2,7 +2,7 @@
 useSeoMeta({
   title: "Inicio",
   description:
-    "Emanuel Carrero, desarrollador fullstack especializado en soluciones front-end y back-end. Construyo aplicaciones web robustas y fáciles de usar. Comprometido con la excelencia en desarrollo, arquitectura de software eficiente y creación de experiencias de usuario únicas. Transformo ideas en aplicaciones web funcionales que impulsan el crecimiento del negocio.",
+    "Emanuel Carrero: experto en desarrollo fullstack, enfocado en front-end y back-end, crea aplicaciones web robustas y eficientes, con énfasis en la experiencia de usuario y transformación de ideas en soluciones de negocio.",
 });
 </script>
 
