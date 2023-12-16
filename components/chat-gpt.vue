@@ -51,13 +51,17 @@ const sendMessage = () => {
     <div class="clear-both"></div>
     <template #footer>
       <div class="flex items-center space-x-4">
-        <UInput
-          v-model="value"
-          class="flex-grow placeholder:italic"
-          size="sm"
-          :placeholder="useChatSuggestions().content"
-          @keyup.enter="sendMessage"
-        />
+        <label class="w-full" for="chat">
+          <UInput
+            id="name"
+            v-model="value"
+            class="flex-grow placeholder:italic"
+            size="sm"
+            name="chat"
+            :placeholder="useChatSuggestions().content"
+            @keyup.enter="sendMessage"
+          />
+        </label>
         <UButton
           icon="i-heroicons-paper-airplane"
           size="sm"
