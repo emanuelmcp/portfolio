@@ -10,7 +10,7 @@ useSeoMeta({
   <ULandingHero
     orientation="horizontal"
     :ui="{ wrapper: 'md:py-20' }"
-    description="Descubre cómo la destreza en fullstack puede revolucionar tu negocio. Soy un desarrollador fullstack con un historial comprobado de construcción de aplicaciones web que son tan robustas como intuitivas. Especializado en tecnologías modernas de frontend y backend, ofrezco soluciones que no solo cumplen, sino que superan las expectativas de rendimiento y usabilidad. Este portafolio demuestra mi compromiso con la excelencia en desarrollo web, la arquitectura de software eficiente y la creación de experiencias de usuario inolvidables. Con cada proyecto, tu visión se convierte en una aplicación web funcional y estéticamente agradable que impulsa el crecimiento."
+    description="Desarrollador fullstack especializado en tecnologías modernas, con experiencia en la creación de aplicaciones web robustas que superan expectativas. Comprometido con la excelencia en desarrollo web para impulsar el crecimiento empresarial a través de experiencias de usuario inolvidables."
     title="Desarrollador Fullstack"
     align="left"
     :links="[
