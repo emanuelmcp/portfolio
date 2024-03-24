@@ -6,6 +6,11 @@ const links = [
     to: "/",
   },
   {
+    label: "Experiencia",
+    icon: "i-heroicons-information-circle",
+    to: "/experience",
+  },
+  {
     label: "Sobre mi",
     icon: "i-heroicons-information-circle",
     to: "/about",
