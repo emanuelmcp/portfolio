@@ -14,7 +14,7 @@ defineProps<Props>();
       <time class="mb-1 text-sm font-normal leading-none text-gray-300 dark:text-gray-400"
         >{{ job.month }} {{ job.year }}{{ job.actually ? " - Actualmente" : "" }}</time
       >
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">{{ job.title }}</h3>
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">{{ job.title }}</h2>
       <ol class="list-disc relative">
         <li v-for="(task, idx) in job.description" :key="idx" class="mb-2 ms-4">
           {{ task }}
