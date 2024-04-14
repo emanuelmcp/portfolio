@@ -12,9 +12,10 @@ defineProps<Props>();
         class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
       ></div>
       <time class="mb-1 text-sm font-normal leading-none text-gray-300 dark:text-gray-400"
-        >{{ job.month }} {{ job.year }}{{ job.actually ? " - Actualmente" : "" }}</time
+        >{{ job.startMonth }} {{ job.startYear
+        }}{{ job.actually ? " - Actualmente" : ` - ${job.endMonth} ${job.endYear}` }}</time
       >
-      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">{{ job.title }}</h2>
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">{{ job.title }} - {{ job.company }}</h2>
       <ol class="list-disc relative">
         <li v-for="(task, idx) in job.description" :key="idx" class="mb-2 ms-4">
           {{ task }}

@@ -5,12 +5,15 @@ useSeoMeta({
     "Descubre mi experiencia laboral, incluyendo roles como desarrollador fullstack, desarrollador backend, líder de equipos y programador analista. Mi trayectoria abarca la contribución a soluciones integrales, optimización del lado del servidor y liderazgo en proyectos, con un enfoque siempre analítico y estratégico.",
 });
 
-const jobs = ref([
+const jobs: Ref<Job[]> = ref([
   {
     id: 1,
     title: "Programador fullstack",
-    month: "Septiembre",
-    year: 2022,
+    company: "ARANOVA",
+    startMonth: "Septiembre",
+    startYear: 2022,
+    endMonth: "Junio",
+    endYear: 2023,
     description: [
       "Proponer, diseñar y empezar a implementar una arquitectura de microservicios por problemas de escalabilidad y repetición de código, minimizando así la duplicación de código y costes.",
       "Ayudar en la compilación de código legacy hecho en Spring Boot.",
@@ -19,8 +22,11 @@ const jobs = ref([
   {
     id: 2,
     title: "Programador analista (fullstack)",
-    month: "Junio",
-    year: 2023,
+    company: "ARANOVA",
+    startMonth: "Junio",
+    startYear: 2023,
+    endMonth: "Enero",
+    endYear: 2024,
     description: [
       "Diseño y elección adecuada según las necesidades del cliente final de bases de bases de datos (relacionales y no relacionales).",
       "Aplicación de patrones de diseño para alargar la vida útil del software.",
@@ -34,8 +40,9 @@ const jobs = ref([
   {
     id: 3,
     title: "Programador analista senior (backend)",
-    month: "Enero",
-    year: 2024,
+    company: "INDRA",
+    startMonth: "Enero",
+    startYear: 2024,
     description: [
       "Dockerizacion de aplicaciones para optimizar los tiempos del onboarding de las aplicaciones y evitar conflictos de versiones.",
       "Resolución de incidencias para garantizar el correcto funcionamiento del software.",
@@ -55,7 +62,12 @@ const sortedJobs = computed(() => jobs.value.sort((a, b) => b.id - a.id));
     headline="Page"
     orientation="vertical"
     title="Experiencia laboral"
-    :ui="{ wrapper: 'py-6 sm:py-8 md:py-10 relative', container: 'gap-8 sm:gap-y-12', description: 'text-left' }"
+    :ui="{
+      wrapper: 'py-6 sm:py-8 md:py-10 relative',
+      title: 'text-left',
+      container: 'gap-8 sm:gap-y-12',
+      description: 'text-left',
+    }"
   >
     <template #description>
       Mi experiencia laboral abarca roles como desarrollador fullstack, desarrollador backend, líder de equipos, y
