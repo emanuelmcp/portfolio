@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Experiencia Laboral",
+  title: "Experiencia laboral",
   description:
     "Descubre mi experiencia laboral, incluyendo roles como desarrollador fullstack, desarrollador backend, líder de equipos y programador analista. Mi trayectoria abarca la contribución a soluciones integrales, optimización del lado del servidor y liderazgo en proyectos, con un enfoque siempre analítico y estratégico.",
 });
