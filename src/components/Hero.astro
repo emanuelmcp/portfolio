@@ -10,105 +10,176 @@ import typescript from "../assets/stack/typescript.png";
 import angular from "../assets/stack/angular.png";
 import { Image } from "astro:assets";
 
-const techStack = [
-  // Lenguajes
-  { name: "Java", icon: java },
-  { name: "TypeScript", icon: typescript },
-  { name: "PostgreSQL", icon: postgre },
-
-  // Frameworks
-  { name: "Spring", icon: spring },
-  { name: "Nestjs", icon: nestjs },
-  { name: "Angular", icon: angular },
-
-  // Infraestructura
-  { name: "Docker", icon: docker },
-  { name: "Redis", icon: redis },
-  { name: "AWS", icon: aws },
-];
-
+const techStack = {
+  languages: [
+    { name: "Java", icon: java },
+    { name: "TypeScript", icon: typescript },
+  ],
+  frameworks: [
+    { name: "Spring", icon: spring },
+    { name: "NestJS", icon: nestjs },
+    { name: "Angular", icon: angular },
+  ],
+  infrastructure: [
+    { name: "PostgreSQL", icon: postgre },
+    { name: "Redis", icon: redis },
+    { name: "Docker", icon: docker },
+    { name: "AWS", icon: aws },
+  ],
+};
 ---
 
 <section
   id="hero"
   class="min-h-screen flex items-center justify-center px-4 py-20"
 >
-  <div class="container mx-auto max-w-6xl">
-    <div class="space-y-8">
-      {/* ASCII Art Header */}
-      <div
-        class="text-primary text-xs md:text-sm leading-tight overflow-x-auto"
-      >
-        <pre
-          class="text-center">
-              {`
+  <div class="container mx-auto max-w-6xl space-y-8">
+    <!-- ASCII Header -->
+    <div class="text-primary text-xs md:text-sm leading-tight overflow-x-auto">
+      <pre
+        class="text-center">
+{`
 ███████╗███╗   ███╗ █████╗ ███╗   ██╗██╗   ██╗███████╗██╗          ██████╗ █████╗ ██████╗ ██████╗ ███████╗██████╗  ██████╗ 
 ██╔════╝████╗ ████║██╔══██╗████╗  ██║██║   ██║██╔════╝██║         ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔═══██╗
 █████╗  ██╔████╔██║███████║██╔██╗ ██║██║   ██║█████╗  ██║         ██║     ███████║██████╔╝██████╔╝█████╗  ██████╔╝██║   ██║
 ██╔══╝  ██║╚██╔╝██║██╔══██║██║╚██╗██║██║   ██║██╔══╝  ██║         ██║     ██╔══██║██╔══██╗██╔══██╗██╔══╝  ██╔══██╗██║   ██║
 ███████╗██║ ╚═╝ ██║██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗    ╚██████╗██║  ██║██║  ██║██║  ██║███████╗██║  ██║╚██████╔╝
 ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ 
-                                                                                                                           
 `}
-            </pre>
-      </div>
+        </pre>
+    </div>
 
-      {/* Typing Effect Title */}
-      <div class="text-center space-y-4">
-        <h1 class="text-2xl md:text-4xl font-bold text-primary">
-          {">"}
-          <span id="typing-text" class="terminal-cursor"></span>
-        </h1>
-        <p class="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
-          {"// "} Construyendo sistemas robustos y escalables desde el backend.
-          <br />
-          {"// "} Especializado en arquitecturas distribuidas, APIs y optimización
-          de rendimiento.
-        </p>
-      </div>
-      {/* Tech Stack Grid */}
-      <div class="mt-12">
-        <p class="text-accent text-center mb-6">{">"} cat tech_stack.txt</p>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {
-            techStack.map((tech, index) => (
-              <div
-                class="border border-primary/30 bg-card p-4 hover:border-primary hover:bg-primary/5 transition-all group"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div class="flex items-center gap-3">
-                  <span class="text-2xl group-hover:scale-110 transition-transform">
-                    <Image src={tech.icon} alt={"Prueba"} class={"w-6 h-6"}/>
-                  </span>
-                  <span class="text-sm text-foreground">{tech.name}</span>
+    <!-- Typing effect -->
+    <div class="text-center space-y-4">
+      <h1 class="text-2xl md:text-4xl font-bold text-primary">
+        {">"}
+        <span id="typing-text" class="terminal-cursor"></span>
+      </h1>
+      <p class="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
+        {"// "} Construyendo sistemas robustos y escalables desde el backend.<br
+        />
+        {"// "} Especializado en arquitecturas distribuidas, APIs y optimización
+        de rendimiento.
+      </p>
+    </div>
+    <!-- Tech Stack -->
+    <div class="mt-12">
+      <p class="text-accent text-center mb-8 font-mono">
+        {">"} tree ~/tech_stack/
+      </p>
+      <div
+        class="max-w-3xl mx-auto border border-primary/30 bg-card/50 p-6 font-mono text-sm space-y-4"
+        id="folders"
+      >
+        <!-- Languages -->
+        <div class="folder cursor-pointer" data-folder="languages">
+          <button
+            class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
+          >
+            <span class="folder-icon text-accent">📂</span>
+            <span class="group-hover:underline cursor-pointer">languages/</span>
+          </button>
+          <div class="folder-content ml-6 mt-2 space-y-1">
+            {
+              techStack.languages.map((tech) => (
+                <div class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                  <span class="text-primary">├──</span>
+                  <Image src={tech.icon} alt={tech.name} class="w-4 h-4" />
+                  <span>{tech.name}</span>
                 </div>
-              </div>
-            ))
-          }
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Frameworks -->
+        <div class="folder cursor-pointer" data-folder="frameworks">
+          <button
+            class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
+          >
+            <span class="folder-icon text-accent">📂</span>
+            <span class="group-hover:underline cursor-pointer">frameworks/</span>
+          </button>
+          <div class="folder-content ml-6 mt-2 space-y-1">
+            {
+              techStack.frameworks.map((tech) => (
+                <div class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                  <span class="text-primary">├──</span>
+                  <Image src={tech.icon} alt={tech.name} class="w-4 h-4" />
+                  <span>{tech.name}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="folder cursor-pointer" data-folder="infrastructure">
+          <button
+            class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
+          >
+            <span class="folder-icon text-accent">📂</span>
+            <span class="group-hover:underline cursor-pointer">infrastructure/</span>
+          </button>
+          <div class="folder-content ml-6 mt-2 space-y-1">
+            {
+              techStack.infrastructure.map((tech) => (
+                <div class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                  <span class="text-primary">├──</span>
+                  <Image src={tech.icon} alt={tech.name} class="w-4 h-4" />
+                  <span>{tech.name}</span>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
-      {/* Terminal Prompt */}
-      <div class="text-center mt-12 text-muted-foreground text-sm">
-        <p>{">"} Presiona cualquier tecla para continuar...</p>
-      </div>
+    </div>
+
+    <!-- Terminal Prompt -->
+    <div class="text-center mt-12 text-muted-foreground text-sm">
+      <p>{">"} Presiona cualquier tecla para continuar...</p>
     </div>
   </div>
 </section>
 
+<!-- 🌙 Vanilla JS Island -->
 <script is:inline>
-  const fullText = "Desarrollador fullstack especializado en backend";
+  // Typing effect
+  const text = "Fullstack Developer // Heavy Backend";
   const typingEl = document.getElementById("typing-text");
+  let i = 0;
+  const typingInterval = setInterval(() => {
+    typingEl.textContent = text.slice(0, i);
+    i++;
+    if (i > text.length) clearInterval(typingInterval);
+  }, 50);
 
-  let index = 0;
+  // Folder toggles
+  document.querySelectorAll(".folder").forEach((folder) => {
+    const btn = folder.querySelector(".folder-btn");
+    const content = folder.querySelector(".folder-content");
+    const icon = folder.querySelector(".folder-icon");
 
-  function type() {
-    if (!typingEl) return;
-    if (index <= fullText.length) {
-      typingEl.textContent = fullText.slice(0, index);
-      index++;
-      setTimeout(type, 50);
+    btn.addEventListener("click", () => {
+      const open = content.classList.toggle("hidden");
+      icon.textContent = open ? "📁" : "📂";
+    });
+  });
+</script>
+
+<style>
+  .terminal-cursor::after {
+    content: "_";
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    from,
+    to {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
     }
   }
-
-  type();
-</script>
+</style>
