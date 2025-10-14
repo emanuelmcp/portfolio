@@ -1,21 +1,32 @@
 ---
+import aws from "../assets/stack/aws.png";
+import java from "../assets/stack/java.png";
+import nestjs from "../assets/stack/nestjs.png";
+import postgre from "../assets/stack/postgre.png";
+import redis from "../assets/stack/redis.png";
+import docker from "../assets/stack/docker.png";
+import spring from "../assets/stack/spring.png";
+import typescript from "../assets/stack/typescript.png";
+import angular from "../assets/stack/angular.png";
+import { Image } from "astro:assets";
+
 const techStack = [
-  { name: "Java", icon: "⬢" },
-  { name: "TypeScript", icon: "🐍" },
-  { name: "PostgreSQL", icon: "🐘" },
-  { name: "Docker", icon: "DO", },
+  // Lenguajes
+  { name: "Java", icon: java },
+  { name: "TypeScript", icon: typescript },
+  { name: "PostgreSQL", icon: postgre },
 
-  { name: "Redis", icon: "◆" },
-  { name: "AWS", icon: "◈" },
-  { name: "TypeScript", icon: "TS" },
-  { name: "Angular", icon: "Go" },
+  // Frameworks
+  { name: "Spring", icon: spring },
+  { name: "Nestjs", icon: nestjs },
+  { name: "Angular", icon: angular },
 
-
-  { name: "Node.js", icon: "🟢" },
-  { name: "GraphQL", icon: "🕸️" },
-  { name: "Kubernetes", icon: "☸️" },
-  { name: "MongoDB", icon: "🍃" },
+  // Infraestructura
+  { name: "Docker", icon: docker },
+  { name: "Redis", icon: redis },
+  { name: "AWS", icon: aws },
 ];
+
 ---
 
 <section
@@ -55,11 +66,10 @@ const techStack = [
           de rendimiento.
         </p>
       </div>
-
       {/* Tech Stack Grid */}
       <div class="mt-12">
         <p class="text-accent text-center mb-6">{">"} cat tech_stack.txt</p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
           {
             techStack.map((tech, index) => (
               <div
@@ -68,7 +78,7 @@ const techStack = [
               >
                 <div class="flex items-center gap-3">
                   <span class="text-2xl group-hover:scale-110 transition-transform">
-                    {tech.icon}
+                    <Image src={tech.icon} alt={"Prueba"} class={"w-6 h-6"}/>
                   </span>
                   <span class="text-sm text-foreground">{tech.name}</span>
                 </div>
@@ -77,7 +87,6 @@ const techStack = [
           }
         </div>
       </div>
-
       {/* Terminal Prompt */}
       <div class="text-center mt-12 text-muted-foreground text-sm">
         <p>{">"} Presiona cualquier tecla para continuar...</p>
@@ -85,6 +94,7 @@ const techStack = [
     </div>
   </div>
 </section>
+
 <script is:inline>
   const fullText = "Desarrollador fullstack especializado en backend";
   const typingEl = document.getElementById("typing-text");
