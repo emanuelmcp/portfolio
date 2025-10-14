@@ -1,0 +1,117 @@
+---
+const projects = [
+  {
+    title: "Distributed Task Queue",
+    description:
+      "Sistema de cola de tareas distribuido con Redis y Bull. Procesa +100k jobs/día con retry logic y priorización.",
+    tech: ["Node.js", "Redis", "Bull", "Docker"],
+    status: "Production",
+    link: "#",
+  },
+  {
+    title: "Real-time Analytics API",
+    description:
+      "API de analytics en tiempo real usando WebSockets. Agregación de datos con TimescaleDB y visualización en dashboards.",
+    tech: ["Python", "FastAPI", "TimescaleDB", "WebSocket"],
+    status: "Production",
+    link: "#",
+  },
+  {
+    title: "Microservices Auth System",
+    description:
+      "Sistema de autenticación centralizado para arquitectura de microservicios. JWT, OAuth2, y rate limiting.",
+    tech: ["Go", "PostgreSQL", "Redis", "gRPC"],
+    status: "Production",
+    link: "#",
+  },
+  {
+    title: "GraphQL Gateway",
+    description:
+      "API Gateway con GraphQL que unifica múltiples servicios REST. Caching inteligente y batching de queries.",
+    tech: ["Node.js", "GraphQL", "Apollo", "Redis"],
+    status: "Beta",
+    link: "#",
+  },
+  {
+    title: "Log Aggregation Service",
+    description:
+      "Servicio de agregación y análisis de logs distribuidos. Procesamiento de +1M eventos/minuto.",
+    tech: ["Python", "Kafka", "Elasticsearch", "Kibana"],
+    status: "Production",
+    link: "#",
+  },
+  {
+    title: "Database Migration Tool",
+    description:
+      "Herramienta CLI para migraciones de bases de datos con rollback automático y validación de esquemas.",
+    tech: ["Go", "PostgreSQL", "MySQL", "CLI"],
+    status: "Open Source",
+    link: "#",
+  },
+];
+---
+
+<section id="projects" class="py-20 px-4 border-t border-primary/30">
+  <div class="container mx-auto max-w-6xl">
+    <div class="space-y-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-accent">
+        {">"} ls -la ./projects/
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {
+          projects.map((project, index) => (
+            <div class="border border-primary/30 bg-card p-6 hover:border-primary hover:bg-primary/5 transition-all group">
+              <div class="space-y-4">
+                <div class="flex items-start justify-between gap-4">
+                  <h3 class="text-lg font-bold text-primary group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  <span
+                    class={`text-xs px-2 py-1 border whitespace-nowrap ${
+                      project.status === "Production"
+                        ? "border-primary text-primary bg-primary/10"
+                        : project.status === "Beta"
+                          ? "border-accent text-accent bg-accent/10"
+                          : "border-muted-foreground text-muted-foreground"
+                    }`}
+                  >
+                    {project.status}
+                  </span>
+                </div>
+
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+
+                <div class="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span class="text-xs px-2 py-1 border border-primary/20 text-foreground">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="pt-2">
+                  <a
+                    href={project.link}
+                    class="text-sm text-accent hover:text-primary transition-colors inline-flex items-center gap-2"
+                  >
+                    {">"} Ver detalles
+                    <span class="group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="text-center text-muted-foreground text-sm mt-8">
+        <p>{">"} Más proyectos disponibles en GitHub...</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,115 @@
+---
+// src/components/TerminalNav.astro
+const menuItems = [
+  { id: "hero", label: "INICIO" },
+  { id: "about", label: "SOBRE MÍ" },
+  { id: "experience", label: "EXPERIENCIA" },
+  { id: "projects", label: "PROYECTOS" },
+  { id: "ai-chat", label: "PREGUNTA" },
+  { id: "contact", label: "CONTACTO" },
+];
+---
+
+<nav
+  class="sticky top-0 z-50 border-b-2 border-primary/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90"
+>
+  <div class="container mx-auto px-4">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-2 font-mono">
+        <div class="flex items-center gap-1 text-primary">
+          <span class="text-xl">{">"}</span>
+          <span class="text-lg font-bold tracking-wider">DEV_</span>
+        </div>
+        <div
+          id="time"
+          class="hidden sm:inline text-muted-foreground font-mono tabular-nums"
+        >
+          [--:--:--]
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div id="nav-links" class="hidden md:flex items-center gap-1">
+        {
+          menuItems.map((item) => (
+            <button
+              id={`nav-${item.id}`}
+              class="relative px-4 py-2 font-mono text-sm tracking-wide transition-all text-muted-foreground hover:text-primary"
+              data-section={item.id}
+            >
+              {item.label}
+              <span class="indicator absolute bottom-0 left-0 right-0 h-0.5 bg-primary hidden"></span>
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Mobile time -->
+      <div id="time-mobile" class="md:hidden text-muted-foreground font-mono tabular-nums">
+        [--:--:--]
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- 🔹 Script: hora + sección activa + scroll suave -->
+<script is:inline>
+  // --- HORA ACTUALIZADA ---
+  function updateTime() {
+    const now = new Date();
+    const formatted = now.toLocaleTimeString([], { hour12: false });
+    document.querySelectorAll("#time, #time-mobile").forEach(el => {
+      if (el) el.textContent = `[${formatted}]`;
+    });
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
+
+  // --- SECCIÓN ACTIVA ---
+  const sections = ["hero", "about", "experience", "projects", "ai-chat", "contact"];
+  const buttons = document.querySelectorAll("#nav-links button");
+
+  function setActiveSection(id) {
+    buttons.forEach(btn => {
+      const indicator = btn.querySelector(".indicator");
+      if (btn.dataset.section === id) {
+        btn.classList.add("text-primary");
+        btn.classList.remove("text-muted-foreground");
+        if (indicator) indicator.classList.remove("hidden");
+      } else {
+        btn.classList.remove("text-primary");
+        btn.classList.add("text-muted-foreground");
+        if (indicator) indicator.classList.add("hidden");
+      }
+    });
+  }
+
+  function handleScroll() {
+    const scrollY = window.scrollY + 120;
+    for (const id of sections) {
+      const section = document.getElementById(id);
+      if (section) {
+        const { offsetTop, offsetHeight } = section;
+        if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
+          setActiveSection(id);
+          break;
+        }
+      }
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // inicial
+
+  // --- SCROLL SUAVE ---
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.section;
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+</script>
