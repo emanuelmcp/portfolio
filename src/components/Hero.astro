@@ -34,10 +34,9 @@ const techStack = {
   class="min-h-screen flex items-center justify-center px-4 py-20"
 >
   <div class="container mx-auto max-w-6xl space-y-8">
-    <!-- ASCII Header -->
-    <div class="text-primary text-xs md:text-sm leading-tight overflow-x-auto">
-      <pre
-        class="text-center">
+<!-- Desktop: ASCII header (solo en pantallas grandes) -->
+<div class="hidden lg:block text-primary text-xs md:text-sm leading-tight overflow-x-auto" aria-hidden="true">
+  <pre class="text-center">
 {`
 ███████╗███╗   ███╗ █████╗ ███╗   ██╗██╗   ██╗███████╗██╗          ██████╗ █████╗ ██████╗ ██████╗ ███████╗██████╗  ██████╗ 
 ██╔════╝████╗ ████║██╔══██╗████╗  ██║██║   ██║██╔════╝██║         ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔═══██╗
@@ -46,9 +45,8 @@ const techStack = {
 ███████╗██║ ╚═╝ ██║██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗    ╚██████╗██║  ██║██║  ██║██║  ██║███████╗██║  ██║╚██████╔╝
 ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ 
 `}
-        </pre>
-    </div>
-
+  </pre>
+</div>
     <!-- Typing effect -->
     <div class="text-center space-y-4">
       <h1 class="text-2xl md:text-4xl font-bold text-primary">

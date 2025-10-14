@@ -129,3 +129,29 @@
     opacity: 0;
   }
 }
+
+
+/* === Scrollbar personalizada global === */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0; /* Hace el track cuadrado */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #48d57c;
+  border-radius: 0; /* Hace el thumb cuadrado */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #23ac55;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #48d57c transparent;
+}
