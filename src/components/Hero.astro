@@ -54,9 +54,9 @@ const techStack = {
         <span id="typing-text" class="terminal-cursor"></span>
       </h1>
       <p class="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
-        {"// "} Construyendo sistemas robustos y escalables desde el backend.<br
+        Construyendo sistemas robustos y escalables desde el backend.<br
         />
-        {"// "} Especializado en arquitecturas distribuidas, APIs y optimización
+        Especializado en arquitecturas distribuidas, APIs y optimización
         de rendimiento.
       </p>
     </div>
@@ -141,10 +141,25 @@ const techStack = {
   </div>
 </section>
 
-<!-- 🌙 Vanilla JS Island -->
+<style>
+  .terminal-cursor::after {
+    content: "_";
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    from,
+    to {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>
+
 <script is:inline>
   // Typing effect
-  const text = "Fullstack Developer // Heavy Backend";
+  const text = "Ingeniero de Software | Especialista en Backend";
   const typingEl = document.getElementById("typing-text");
   let i = 0;
   const typingInterval = setInterval(() => {
@@ -165,19 +180,3 @@ const techStack = {
     });
   });
 </script>
-
-<style>
-  .terminal-cursor::after {
-    content: "_";
-    animation: blink 1s step-end infinite;
-  }
-  @keyframes blink {
-    from,
-    to {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-</style>
