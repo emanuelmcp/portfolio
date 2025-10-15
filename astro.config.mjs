@@ -7,4 +7,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        widths: [320, 640, 1024, 1280, 1920],
+        formats: ['avif', 'webp', 'jpeg'],
+      }
+    }
+  }
 });
