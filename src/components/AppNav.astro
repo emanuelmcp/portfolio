@@ -35,18 +35,21 @@ const menuItems = [
           menuItems.map((item) => (
             <button
               id={`nav-${item.id}`}
-              class="relative px-4 py-2 font-mono text-sm tracking-wide transition-all text-muted-foreground hover:text-primary"
+              class="relative px-4 py-2 font-mono text-sm tracking-wide transition-all text-muted-foreground hover:text-primary cursor-pointer"
               data-section={item.id}
             >
               {item.label}
-              <span class="indicator absolute bottom-0 left-0 right-0 h-0.5 bg-primary hidden"></span>
+              <span class="indicator absolute bottom-0 left-0 right-0 h-0.5 bg-primary hidden" />
             </button>
           ))
         }
       </div>
 
       <!-- Mobile time -->
-      <div id="time-mobile" class="md:hidden text-muted-foreground font-mono tabular-nums">
+      <div
+        id="time-mobile"
+        class="md:hidden text-muted-foreground font-mono tabular-nums"
+      >
         [--:--:--]
       </div>
     </div>
@@ -59,7 +62,7 @@ const menuItems = [
   function updateTime() {
     const now = new Date();
     const formatted = now.toLocaleTimeString([], { hour12: false });
-    document.querySelectorAll("#time, #time-mobile").forEach(el => {
+    document.querySelectorAll("#time, #time-mobile").forEach((el) => {
       if (el) el.textContent = `[${formatted}]`;
     });
   }
@@ -67,11 +70,18 @@ const menuItems = [
   setInterval(updateTime, 1000);
 
   // --- SECCIÓN ACTIVA ---
-  const sections = ["hero", "about", "experience", "projects", "ai-chat", "contact"];
+  const sections = [
+    "hero",
+    "about",
+    "experience",
+    "projects",
+    "ai-chat",
+    "contact",
+  ];
   const buttons = document.querySelectorAll("#nav-links button");
 
   function setActiveSection(id) {
-    buttons.forEach(btn => {
+    buttons.forEach((btn) => {
       const indicator = btn.querySelector(".indicator");
       if (btn.dataset.section === id) {
         btn.classList.add("text-primary");
@@ -85,25 +95,36 @@ const menuItems = [
     });
   }
 
-  function handleScroll() {
-    const scrollY = window.scrollY + 120;
-    for (const id of sections) {
-      const section = document.getElementById(id);
-      if (section) {
-        const { offsetTop, offsetHeight } = section;
-        if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
-          setActiveSection(id);
-          break;
-        }
-      }
+function handleScroll() {
+  const scrollY = window.scrollY + window.innerHeight / 2; // centro de la ventana
+  let activeSet = false;
+
+  for (const id of sections) {
+    const section = document.getElementById(id);
+    if (!section) continue;
+
+    const offsetTop = section.offsetTop;
+    const offsetHeight = section.offsetHeight;
+
+    if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
+      setActiveSection(id);
+      activeSet = true;
+      break;
     }
   }
+
+  // fallback si no se encontró ninguna (por seguridad)
+  if (!activeSet) {
+    setActiveSection(sections[sections.length - 1]);
+  }
+}
+
 
   window.addEventListener("scroll", handleScroll);
   handleScroll(); // inicial
 
   // --- SCROLL SUAVE ---
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.section;
       const section = document.getElementById(id);

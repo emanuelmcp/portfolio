@@ -35,39 +35,28 @@ import "../styles/global.css";
         {/* Error Messages */}
         <div class="space-y-3 mb-8">
           <p class="text-primary">
-            <span class="text-red-500">[ERROR]</span> Page not found in database
+            <span class="text-red-500">[ERROR]</span> Página no encontrada en la
+            base de datos
           </p>
           <p class="text-primary/80">
-            <span class="text-yellow-500">[WARNING]</span> The page you're looking
-            for has been:
+            <span class="text-yellow-500">[WARNING]</span> La página que estás buscando
+            ha sido:
           </p>
           <ul class="text-primary/70 space-y-1 ml-8 list-none">
-            <li>→ Deleted by a rogue AI 🤖</li>
-            <li>→ Stolen by hackers (the bad ones) 🕵️</li>
-            <li>→ Lost in the matrix 🌐</li>
-            <li>→ Eaten by a bug (literally) 🐛</li>
-            <li>→ Or maybe you just typed it wrong... 🤷</li>
+            <li>→ Eliminada por una IA malvada 🤖</li>
+            <li>→ Robada por hackers (de los malos) 🕵️</li>
+            <li>→ Perdida en la matrix 🌐</li>
+            <li>→ Devorada por un bug (literalmente) 🐛</li>
+            <li>→ O quizás simplemente escribiste mal... 🤷</li>
           </ul>
         </div>
 
         {/* Terminal Commands */}
-        <div class="bg-black/30 border border-primary/20 p-4 mb-6 space-y-2">
-          <p class="text-primary/60">
-            <span class="text-primary">root@portfolio</span>:~$ ls -la /pages/
-          </p>
-          <p class="text-red-500">
-            ls: cannot access '/pages/': No such file or directory
-          </p>
-          <p class="text-primary/60 mt-3">
-            <span class="text-primary">root@portfolio</span>:~$ sudo find-page
-          </p>
-          <p class="text-yellow-500">[sudo] password for root: ********</p>
-          <p class="text-red-500">Error: Page not found. Did you mean '/' ?</p>
-          <p class="text-primary/60 mt-3">
-            <span class="text-primary">root@portfolio</span>:~$ <span
-              class="animate-pulse">_</span
-            >
-          </p>
+        <div
+          id="terminal"
+          class="bg-black/30 border border-primary/20 p-4 space-y-2 font-mono text-sm sm:text-base min-h-[250px] overflow-y-auto"
+        >
+          <!-- Las líneas se insertarán aquí dinámicamente -->
         </div>
 
         {/* Action Buttons */}
@@ -77,24 +66,102 @@ import "../styles/global.css";
             class="flex-1 bg-primary/10 hover:bg-primary/20 border border-primary text-primary px-6 py-3 text-center transition-colors"
           >
             <span class="mr-2">→</span>
-            cd /home
+            cd /inicio
           </a>
-          <button
-            class="flex-1 bg-background hover:bg-primary/5 border border-primary/50 text-primary/70 hover:text-primary px-6 py-3 transition-colors"
-          >
-            <span class="mr-2">←</span>
-            cd ..
-          </button>
         </div>
 
         {/* Footer Message */}
         <div class="mt-6 pt-6 border-t border-primary/30">
           <p class="text-primary/50 text-sm text-center">
-            <span class="text-green-500">[TIP]</span> Try using the navigation menu
-            above or just go back home
+            <span class="text-green-500">[TIP]</span> Prueba a usar la navegación
+            del sitio o simplemente vuelve al inicio.
           </p>
         </div>
       </div>
     </div>
   </div>
 </Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const terminal = document.getElementById("terminal");
+
+    const lines = [
+      {
+        text: "root@portfolio:~$ ls -la /pages/",
+        color: "text-primary/60",
+        delay: 500,
+      },
+      {
+        text: "ls: no se puede acceder a '/pages/': El fichero o directorio no existe",
+        color: "text-red-500",
+        delay: 1000,
+      },
+      {
+        text: "root@portfolio:~$ sudo find-page",
+        color: "text-primary/60",
+        delay: 500,
+      },
+      {
+        text: "[sudo] password for root: ********",
+        color: "text-yellow-500",
+        delay: 1000,
+      },
+      {
+        text: "Error: Página no encontrada. ¿Quisiste decir '/' ?",
+        color: "text-red-500",
+        delay: 1000,
+      },
+    ];
+
+    let idx = 0;
+
+    function typeLine(line, callback) {
+      let i = 0;
+      const p = document.createElement("p");
+      p.className = line.color;
+      terminal.appendChild(p);
+
+      function typeChar() {
+        if (i < line.text.length) {
+          p.textContent += line.text[i];
+          i++;
+          setTimeout(typeChar, 50); // velocidad de tipeo
+        } else if (callback) {
+          setTimeout(callback, line.delay);
+        }
+      }
+
+      typeChar();
+    }
+
+    function nextLine() {
+      if (idx < lines.length) {
+        typeLine(lines[idx], nextLine);
+        idx++;
+      } else {
+        // Al final agregamos el cursor parpadeante
+        const p = document.createElement("p");
+        p.innerHTML = `<span class="text-primary/60">root@portfolio:~$ </span><span class="cursor">_</span>`;
+        terminal.appendChild(p);
+      }
+    }
+
+    nextLine();
+  });
+</script>
+
+<style>
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 0.7ch;
+    animation: blink 1s step-start infinite;
+    color: #00ff00; /* verde terminal, puedes cambiarlo */
+  }
+</style>

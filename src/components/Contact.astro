@@ -1,118 +1,160 @@
+---
+import { Image } from "astro:assets";
+import github from "../assets/contact/github.png";
+import linkedin from "../assets/contact/linkedin.png";
+import mail from "../assets/contact/mail.png";
+import smartphone from "../assets/contact/smartphone.png";
+
+const socials = [
+  {
+    name: "Email",
+    url: "emanuelmcp@gmail.com",
+    icon: mail,
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/yourhandle",
+    icon: github,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/yourprofile",
+    icon: linkedin,
+  },
+  {
+    name: "Teléfono",
+    url: "https://wa.me/1234567890",
+    icon: smartphone,
+  },
+];
+---
+
 <section id="contact" class="py-20 px-4 border-t border-primary/30">
   <div class="container mx-auto max-w-4xl">
     <div class="space-y-8">
-      <h2 class="text-2xl md:text-3xl font-bold text-accent">{">"} ./contact.sh</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-accent">
+        {">"} ./contact.sh
+      </h2>
 
       <div class="border border-primary/30 bg-card p-6 md:p-8 space-y-6">
         <!-- Intro -->
         <div class="space-y-4">
-          <p class="text-foreground">{">"} Interesado en colaborar o tienes un proyecto en mente?</p>
+          <p class="text-foreground">
+            {">"} Interesado en colaborar o tienes un proyecto en mente?
+          </p>
           <p class="text-muted-foreground text-sm">
             Siempre abierto a discutir nuevas oportunidades y desafíos técnicos.
           </p>
         </div>
 
         <!-- Terminal Simulator -->
-        <div id="terminal" class="border border-primary/30 bg-background p-4 min-h-[200px] font-mono text-sm">
+        <div
+          id="terminal"
+          class="border border-primary/30 bg-background p-4 min-h-[200px] font-mono text-sm"
+        >
           <div class="space-y-2">
-            <p class="text-primary">{">"} Terminal Interactivo - Escribe 'help' para ver los comandos</p>
-            <div class="h-px bg-primary/30 my-2" />
+            <p class="text-primary">
+              {">"} Terminal Interactivo - Escribe 'help' para ver los comandos
+            </p>
+            <div class="h-px bg-primary/30 my-2"></div>
             <div id="terminal-output"></div>
             <form id="terminal-form" class="flex items-center gap-2">
               <span class="text-primary">$</span>
-              <input id="terminal-input" type="text" class="flex-1 bg-transparent border-none outline-none text-foreground" placeholder="type a command..." autofocus />
+              <input
+                id="terminal-input"
+                type="text"
+                class="flex-1 bg-transparent border-none outline-none text-foreground"
+                placeholder="type a command..."
+                autofocus
+              />
             </form>
           </div>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Social Links -->
         <div class="grid md:grid-cols-2 gap-4 pt-4">
-          <a href="mailto:developer@backend.dev" class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group">
-            <div class="flex items-center gap-3">
-              <span class="text-2xl">📧</span>
-              <div>
-                <p class="text-sm text-accent">Email</p>
-                <p class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">developer@backend.dev</p>
-              </div>
-            </div>
-          </a>
+          {
+            socials.map((s) => (
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group"
+              >
+                <div class="flex items-center gap-3">
+                  <Image src={s.icon} alt={s.name} class="w-6 h-6" />
+                  <div>
+                    <p class="text-sm text-accent">{s.name}</p>
+                    <p class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                      {s.url}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
 
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group">
-            <div class="flex items-center gap-3">
-              <span class="text-2xl">🐙</span>
-              <div>
-                <p class="text-sm text-accent">GitHub</p>
-                <p class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">github.com/yourhandle</p>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group">
-            <div class="flex items-center gap-3">
-              <span class="text-2xl">💼</span>
-              <div>
-                <p class="text-sm text-accent">LinkedIn</p>
-                <p class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">linkedin.com/in/yourprofile</p>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group">
-            <div class="flex items-center gap-3">
-              <span class="text-2xl">🐦</span>
-              <div>
-                <p class="text-sm text-accent">Twitter</p>
-                <p class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">twitter.com/yourhandle</p>
-              </div>
-            </div>
-          </a>
+        <div class="text-center text-muted-foreground text-sm">
+          <p>{">"} Conexión establecida. Esperando respuesta...</p>
         </div>
       </div>
-
-      <div class="text-center text-muted-foreground text-sm">
-        <p>{">"} Conexión establecida. Esperando respuesta...</p>
-      </div>
     </div>
-  </div>
 
-  <!-- 🔹 Script JS puro para terminal -->
-  <script is:inline>
-    const outputEl = document.getElementById("terminal-output");
-    const form = document.getElementById("terminal-form");
-    const input = document.getElementById("terminal-input");
-    let output = [];
+    <!-- 🔹 Script JS puro para terminal -->
+    <script is:inline>
+      const outputEl = document.getElementById("terminal-output");
+      const form = document.getElementById("terminal-form");
+      const input = document.getElementById("terminal-input");
+      let output = [];
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const command = input.value.trim();
-      if (!command) return;
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const command = input.value.trim();
+        if (!command) return;
 
-      // Añadir comando al output
-      output.push(`$ ${command}`);
+        // Añadir comando al output
+        output.push(`$ ${command}`);
 
-      // Comandos predefinidos
-      const cmd = command.toLowerCase();
-      if (cmd.includes("email")) output.push("📧 developer@backend.dev");
-      else if (cmd.includes("github")) output.push("🐙 github.com/yourhandle");
-      else if (cmd.includes("linkedin")) output.push("💼 linkedin.com/in/yourprofile");
-      else if (cmd.includes("twitter")) output.push("🐦 twitter.com/yourhandle");
-      else if (cmd === "help") output.push("Comandos disponibles: email, github, linkedin, twitter, clear");
-      else if (cmd === "clear") { output = []; input.value = ""; renderOutput(); return; }
-      else output.push(`Comando no encontrado: ${command}. Escribe 'help' para ver los comandos disponibles.`);
+        // Comandos predefinidos
+        const cmd = command.toLowerCase();
+        if (cmd.includes("email")) output.push("📧 developer@backend.dev");
+        else if (cmd.includes("github"))
+          output.push("🐙 github.com/yourhandle");
+        else if (cmd.includes("linkedin"))
+          output.push("💼 linkedin.com/in/yourprofile");
+        else if (cmd.includes("twitter"))
+          output.push("🐦 twitter.com/yourhandle");
+        else if (cmd === "help")
+          output.push(
+            "Comandos disponibles: email, github, linkedin, twitter, clear",
+          );
+        else if (cmd === "clear") {
+          output = [];
+          input.value = "";
+          renderOutput();
+          return;
+        } else
+          output.push(
+            `Comando no encontrado: ${command}. Escribe 'help' para ver los comandos disponibles.`,
+          );
 
-      input.value = "";
-      renderOutput();
-    });
-
-    function renderOutput() {
-      outputEl.innerHTML = "";
-      output.forEach(line => {
-        const p = document.createElement("p");
-        p.textContent = line;
-        p.className = line.startsWith("$") ? "text-accent" : "text-muted-foreground";
-        outputEl.appendChild(p);
+        input.value = "";
+        renderOutput();
       });
-      outputEl.scrollTop = outputEl.scrollHeight;
-    }
-  </script>
+
+      function renderOutput() {
+        outputEl.innerHTML = "";
+        output.forEach((line) => {
+          const p = document.createElement("p");
+          p.textContent = line;
+          p.className = line.startsWith("$")
+            ? "text-accent"
+            : "text-muted-foreground";
+          outputEl.appendChild(p);
+        });
+        outputEl.scrollTop = outputEl.scrollHeight;
+      }
+    </script>
+  </div>
 </section>
