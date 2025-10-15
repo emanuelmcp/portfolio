@@ -36,7 +36,9 @@ const socials = [
         {">"} ./contact.sh
       </h2>
 
-      <div class="border border-primary/30 bg-card p-6 md:p-8 space-y-6 rounded">
+      <div
+        class="border border-primary/30 bg-card p-6 md:p-8 space-y-6 rounded"
+      >
         <!-- Intro -->
         <div class="space-y-4">
           <p class="text-foreground">
@@ -50,7 +52,7 @@ const socials = [
         <!-- Terminal Simulator -->
         <div
           id="terminal"
-          class="border border-primary/30 bg-background p-4 min-h-[200px] font-mono text-sm rounded"
+          class="border border-primary/30 bg-background p-4 min-h-[200px] max-h-[200px] overflow-y-auto font-mono text-sm rounded"
         >
           <div class="space-y-2">
             <p class="text-primary">
@@ -65,7 +67,6 @@ const socials = [
                 type="text"
                 class="flex-1 bg-transparent border-none outline-none text-foreground"
                 placeholder="type a command..."
-                
               />
             </form>
           </div>
@@ -127,7 +128,7 @@ const socials = [
           output.push("🐦 twitter.com/yourhandle");
         else if (cmd === "help")
           output.push(
-            "Comandos disponibles: email, github, linkedin, twitter, clear",
+            "Comandos disponibles: email, github, linkedin, twitter, clear"
           );
         else if (cmd === "clear") {
           output = [];
@@ -136,7 +137,7 @@ const socials = [
           return;
         } else
           output.push(
-            `Comando no encontrado: ${command}. Escribe 'help' para ver los comandos disponibles.`,
+            `Comando no encontrado: ${command}. Escribe 'help' para ver los comandos disponibles.`
           );
 
         input.value = "";
@@ -153,7 +154,15 @@ const socials = [
             : "text-muted-foreground";
           outputEl.appendChild(p);
         });
-        outputEl.scrollTop = outputEl.scrollHeight;
+
+        // 🔹 Forzar scroll hacia abajo con suavidad
+        requestAnimationFrame(() => {
+          const terminal = document.getElementById("terminal");
+          terminal.scrollTo({
+            top: terminal.scrollHeight,
+            behavior: "smooth",
+          });
+        });
       }
     </script>
   </div>

@@ -59,18 +59,43 @@ const menuItems = [
           aria-label="Toggle menu"
         >
           <!-- Íconos: menu / close -->
-          <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            id="icon-menu"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
-          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            id="icon-close"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t-2 border-primary/30 bg-background/98 backdrop-blur">
+    <div
+      id="mobile-menu"
+      class="hidden md:hidden border-t-2 border-primary/30 bg-background/98 backdrop-blur"
+    >
       <div class="py-4 space-y-1">
         {
           menuItems.map((item) => (
@@ -102,12 +127,20 @@ const menuItems = [
   setInterval(updateTime, 1000);
 
   // --- SECCIÓN ACTIVA ---
-  const sections = ["hero", "about", "experience", "projects", "ai-chat", "contact"];
+  const sections = [
+    "hero",
+    "about",
+    "experience",
+    "projects",
+    "ai-chat",
+    "contact",
+  ];
   const buttons = document.querySelectorAll("#nav-links button");
   const mobileButtons = document.querySelectorAll("#mobile-menu button");
 
   function setActiveSection(id) {
-    [...buttons, ...mobileButtons].forEach((btn) => {
+    // --- Desktop nav ---
+    buttons.forEach((btn) => {
       const indicator = btn.querySelector(".indicator");
       if (btn.dataset.section === id) {
         btn.classList.add("text-primary");
@@ -119,8 +152,30 @@ const menuItems = [
         if (indicator) indicator.classList.add("hidden");
       }
     });
-  }
 
+    // --- 🔹 Mobile nav ---
+    mobileButtons.forEach((btn) => {
+      if (btn.dataset.section === id) {
+        btn.classList.add("border-primary", "text-primary", "bg-primary/10");
+        btn.classList.remove(
+          "border-transparent",
+          "text-muted-foreground",
+          "hover:text-primary",
+          "hover:border-primary/50",
+          "hover:bg-primary/5"
+        );
+      } else {
+        btn.classList.remove("border-primary", "text-primary", "bg-primary/10");
+        btn.classList.add(
+          "border-transparent",
+          "text-muted-foreground",
+          "hover:text-primary",
+          "hover:border-primary/50",
+          "hover:bg-primary/5"
+        );
+      }
+    });
+  }
   function handleScroll() {
     const scrollY = window.scrollY + window.innerHeight / 2;
     for (const id of sections) {
@@ -136,7 +191,9 @@ const menuItems = [
   }
 
   window.addEventListener("scroll", handleScroll);
-  window.addEventListener("load", () => requestAnimationFrame(() => setTimeout(handleScroll, 50)));
+  window.addEventListener("load", () =>
+    requestAnimationFrame(() => setTimeout(handleScroll, 50))
+  );
 
   // --- SCROLL SUAVE ---
   function scrollToSection(id) {
