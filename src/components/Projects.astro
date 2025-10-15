@@ -1,20 +1,20 @@
 ---
 const projects = [
   {
-    title: "Distributed Task Queue",
+    title: "Ronin Artes Marciales",
     description:
-      "Sistema de cola de tareas distribuido con Redis y Bull. Procesa +100k jobs/día con retry logic y priorización.",
-    tech: ["Node.js", "Redis", "Bull", "Docker"],
-    status: "Production",
-    link: "#",
+      "Portfolio web para un gimnasio de artes marciales. Diseño responsivo, enfocado a mejorar el ratio de conversión. SEO optimizado y totalmente accesible.",
+    tech: ["Typescript", "Astro", "TailwindCSS"],
+    status: "EN PRODUCCIÓN",
+    link: "https://ronin-demo.netlify.app",
   },
   {
-    title: "Real-time Analytics API",
+    title: "Portfolio Personal",
     description:
-      "API de analytics en tiempo real usando WebSockets. Agregación de datos con TimescaleDB y visualización en dashboards.",
-    tech: ["Python", "FastAPI", "TimescaleDB", "WebSocket"],
-    status: "Production",
-    link: "#",
+      "Portfolio personal con un diseño original inspirado en terminales Unix. Implementado con Astro y TailwindCSS, optimizado para SEO y rendimiento.",
+    tech: ["Typescript", "Astro", "TailwindCSS"],
+    status: "EN PRODUCCIÓN",
+    link: "https://github.com/emanuelmcp/portfolio",
   },
   {
     title: "Microservices Auth System",
@@ -69,9 +69,9 @@ const projects = [
                   </h3>
                   <span
                     class={`text-xs px-2 py-1 border whitespace-nowrap ${
-                      project.status === "Production"
+                      project.status === "EN PRODUCCIÓN"
                         ? "border-primary text-primary bg-primary/10"
-                        : project.status === "Beta"
+                        : project.status === "EN DESARROLLO"
                           ? "border-accent text-accent bg-accent/10"
                           : "border-muted-foreground text-muted-foreground"
                     }`}
