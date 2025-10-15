@@ -129,55 +129,58 @@ const computeCategoriesInSpanish = (category: string) => {
             </div>
           </div>
         </div>
-
         <!-- Dossier Screen -->
-        <div id="dossier" class="space-y-6 hidden">
-          <!-- Dossier Header -->
-          <div class="border-b border-primary pb-4">
-            <div class="flex items-center gap-2 text-foreground mb-2">
-              <span>█</span>
-              <span class="text-lg font-bold">EXPEDIENTE CLASIFICADO</span>
-              <span>█</span>
-            </div>
-            <p class="text-foreground text-xs">
-              ID: DEV-2024-001 | NIVEL: SENIOR | ESTADO: ACTIVO
-            </p>
+        <div
+          id="dossier"
+          class="space-y-6 hidden p-4 bg-black/80 rounded-lg border border-green-500"
+        >
+          <!-- Carnet Header -->
+          <div
+            class="flex items-center justify-between border-b border-green-500 pb-2 mb-4"
+          >
+            <h2 class="text-green-300 font-bold text-lg">
+              EXPEDIENTE DE AGENTE
+            </h2>
+            <span class="text-xs text-green-500"
+              >ID: DEV-2024-001 | NIVEL: SENIOR | ACTIVO</span
+            >
           </div>
 
-          <!-- Profile Section -->
-          <div class="grid md:grid-cols-[1fr_320px] gap-6 items-start">
-            <!-- Info -->
-            <div class="space-y-4">
+          <!-- Info y Foto -->
+          <div class="grid md:grid-cols-[1fr_200px] gap-4 items-start">
+            <!-- Información -->
+            <div class="space-y-2">
               <div>
-                <p class="text-primary text-xs mb-1">&gt; NOMBRE COMPLETO:</p>
-                <p class="text-primary">Emanuel Carrero</p>
+                <p class="text-green-400 text-xs font-semibold">
+                  NOMBRE COMPLETO
+                </p>
+                <p class="text-primary text-sm">Emanuel Carrero</p>
               </div>
               <div>
-                <p class="text-foreground text-xs mb-1">
-                  &gt; ESPECIALIZACIÓN:
+                <p class="text-green-400 text-xs font-semibold">
+                  ESPECIALIZACIÓN
                 </p>
-                <p class="text-primary">
+                <p class="text-primary text-sm">
                   Desarrollo Backend | Arquitectura de Sistemas
                 </p>
               </div>
               <div>
-                <p class="text-foreground text-xs mb-1">
-                  &gt; AÑOS DE EXPERIENCIA:
-                </p>
-                <p class="text-primary">+5 años</p>
+                <p class="text-green-400 text-xs font-semibold">EXPERIENCIA</p>
+                <p class="text-primary text-sm">+5 años</p>
               </div>
-              <!-- Skills Section -->
-              <div class="border-t border-primary pt-4 space-y-6">
+
+              <!-- Skills como tarjetas -->
+              <div class="mt-4 space-y-3">
                 {
                   Object.entries(skills).map(([category, items]) => (
                     <div>
-                      <p class="text-xs text-green-300 font-semibold mb-2">
+                      <p class="text-green-300 text-xs font-semibold mb-1">
                         {computeCategoriesInSpanish(category)}
                       </p>
-                      <ul class="space-y-4">
+                      <ul class="flex flex-wrap gap-2">
                         {items.map((skill, index) => (
                           <li
-                            class="flex items-center gap-1 opacity-0"
+                            class="flex items-center gap-1 bg-green-900/20 px-2 py-1 rounded opacity-0"
                             style={`animation: fadeIn 0.5s ease forwards; animation-delay: ${index * 50}ms;`}
                           >
                             {skill.img && (
@@ -187,7 +190,7 @@ const computeCategoriesInSpanish = (category: string) => {
                                 class="w-4 h-4 object-contain"
                               />
                             )}
-                            <span class="text-sm">{skill.name}</span>
+                            <span class="text-xs">{skill.name}</span>
                           </li>
                         ))}
                       </ul>
@@ -197,125 +200,105 @@ const computeCategoriesInSpanish = (category: string) => {
               </div>
             </div>
 
-            <!-- Photo -->
-            <div class="flex flex-col items-center gap-3">
+            <!-- Foto del agente -->
+            <div class="flex flex-col items-center gap-2">
               <div class="relative w-full group">
-                <div
-                  class="relative group w-full flex-shrink-0 max-w-xs md:max-w-sm mx-auto"
-                >
-                  <!-- Glow exterior -->
-                  <div
-                    class="absolute -inset-1 bg-gradient-to-tr from-primary/40 to-accent/40 blur opacity-60 group-hover:opacity-30 transition"
-                  >
-                  </div>
+                <div class="relative w-full">
+            <div
+              class="absolute -inset-1 bg-gradient-to-tr from-primary/40 to-accent/40 blur opacity-60 group-hover:opacity-30 transition"
+            >
+            </div>
 
-                  <!-- Imagen principal -->
                   <Image
                     src={emanuel}
                     alt="Foto de Emanuel"
-                    class="relative shadow-2xl object-contain w-full h-auto mx-auto transform transition duration-500 group-hover:rotate-2 group-hover:scale-105"
-                    widths={[271, 320, 480, 640, 768, 1024]}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 271px"
-                    loading="lazy"
-                  />
-
-                  <!-- Sello "HIRED" -->
-                  <Image
-                    src={hired}
-                    alt="Sello de contratado"
-                    class="absolute top-1/2 left-1/2 w-[130%] max-w-none opacity-0 transform -translate-x-1/2 -translate-y-1/2 rotate-[-25deg] transition duration-700 ease-out group-hover:opacity-100 group-hover:scale-105 group-hover:rotate-[-20deg]"
-                    widths={[353, 480, 640, 768, 1024]}
-                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 353px"
+                    class="relative rounded-lg object-cover w-full h-auto transform transition duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
-              <div class="text-center">
-                <p class="font-bold">AGENTE: BUGZILLA</p>
-                <p class="text-foreground text-xs">Backend Specialist</p>
-              </div>
+              <p class="text-green-300 text-xs font-bold">AGENTE: BUGZILLA</p>
+              <p class="text-foreground text-xs">Backend Specialist</p>
             </div>
           </div>
 
           <!-- Footer -->
-          <div class="border-t border-primary pt-4 text-xs text-foreground">
-            <p>
-              &gt; Expediente cargado exitosamente. Todos los sistemas
-              operativos.
-            </p>
-            <p class="text-green-300 mt-1">&gt; ACCESO AUTORIZADO ✓</p>
+          <div class="border-t border-green-500 pt-2 text-xs text-green-300">
+            &gt; Expediente cargado exitosamente. ACCESO AUTORIZADO ✓
           </div>
+        </div>
+
+        <!-- Terminal Prompt -->
+        <div class="text-center mt-12 text-foreground text-sm">
+          <p>&gt; Presiona cualquier tecla para continuar...</p>
         </div>
       </div>
     </div>
 
-    <!-- Terminal Prompt -->
-    <div class="text-center mt-12 text-foreground text-sm">
-      <p>&gt; Presiona cualquier tecla para continuar...</p>
-    </div>
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Terminal cursor blink */
+      .terminal-cursor {
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+    </style>
+
+    <script is:inline>
+      // Typing effect
+      const typingEl = document.getElementById("typing");
+      const fullText = "Desarrollador fullstack especializado en backend ";
+      let i = 0;
+      const typingInterval = setInterval(() => {
+        if (i <= fullText.length) {
+          typingEl.textContent = fullText.slice(0, i);
+          i++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 50);
+
+      // Progress bar
+      const progressBar = document.getElementById("progress-bar");
+      const progressText = document.getElementById("progress-text");
+      const loadingScreen = document.getElementById("loading-screen");
+      const dossier = document.getElementById("dossier");
+      let progress = 0;
+
+      const progressInterval = setInterval(() => {
+        if (progress >= 100) {
+          clearInterval(progressInterval);
+          setTimeout(() => {
+            loadingScreen.classList.add("hidden");
+            dossier.classList.remove("hidden");
+
+            // Animar los logos
+            document
+              .querySelectorAll("#skills-container > div")
+              .forEach((el) => {
+                el.classList.remove("opacity-0");
+              });
+          }, 300);
+        } else {
+          progress += 2;
+          progressBar.style.width = progress + "%";
+          progressText.textContent = progress + "%";
+        }
+      }, 30);
+    </script>
   </div>
 </section>
-
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  /* Terminal cursor blink */
-  .terminal-cursor {
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% {
-      border-color: transparent;
-    }
-  }
-</style>
-
-<script is:inline>
-  // Typing effect
-  const typingEl = document.getElementById("typing");
-  const fullText = "Desarrollador fullstack especializado en backend ";
-  let i = 0;
-  const typingInterval = setInterval(() => {
-    if (i <= fullText.length) {
-      typingEl.textContent = fullText.slice(0, i);
-      i++;
-    } else {
-      clearInterval(typingInterval);
-    }
-  }, 50);
-
-  // Progress bar
-  const progressBar = document.getElementById("progress-bar");
-  const progressText = document.getElementById("progress-text");
-  const loadingScreen = document.getElementById("loading-screen");
-  const dossier = document.getElementById("dossier");
-  let progress = 0;
-
-  const progressInterval = setInterval(() => {
-    if (progress >= 100) {
-      clearInterval(progressInterval);
-      setTimeout(() => {
-        loadingScreen.classList.add("hidden");
-        dossier.classList.remove("hidden");
-
-        // Animar los logos
-        document.querySelectorAll("#skills-container > div").forEach((el) => {
-          el.classList.remove("opacity-0");
-        });
-      }, 300);
-    } else {
-      progress += 2;
-      progressBar.style.width = progress + "%";
-      progressText.textContent = progress + "%";
-    }
-  }, 30);
-</script>
