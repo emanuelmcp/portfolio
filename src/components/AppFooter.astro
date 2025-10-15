@@ -1,0 +1,19 @@
+<footer class="border-t border-primary/30 py-8">
+  <div class="container mx-auto px-4 text-center text-sm text-muted-foreground">
+    <p id="version">{">"} System.exit(0) // Portfolio v2.0.0</p>
+  </div>
+</footer>
+
+<script is:inline>
+  // Obtener año actual
+  const year = new Date().getFullYear();
+
+  // Construir versión: major 2, minor 0, patch = año % 2000 (ej: 2025 → 25)
+  const major = 2;
+  const minor = 0;
+  const patch = year % 2000;
+
+  // Actualizar el contenido del footer
+  const versionElement = document.getElementById("version");
+  versionElement.textContent = `> System.exit(0) // Portfolio v${major}.${minor}.${patch}`;
+</script>
