@@ -10,20 +10,49 @@ import docker from "../assets/stack/docker.png";
 import spring from "../assets/stack/spring.png";
 import typescript from "../assets/stack/typescript.png";
 import angular from "../assets/stack/angular.png";
+import leadership from "../assets/stack/leadership.png";
+import talking from "../assets/stack/talking.png";
+import think from "../assets/stack/think.png";
 import emanuel from "../assets/about/emanuel.png";
 import hired from "../assets/about/hired.png";
 
-const skills = [
-  { name: "Java", img: java },
-  { name: "TypeScript", img: typescript },
-  { name: "Spring Boot", img: spring },
-  { name: "NestJS", img: nestjs },
-  { name: "Docker", img: docker },
-  { name: "PostgreSQL", img: postgre },
-  { name: "AWS", img: aws },
-  { name: "Redis", img: redis },
-  { name: "Angular", img: angular },
-];
+const skills = {
+  languages: [
+    { name: "Java", img: java },
+    { name: "TypeScript", img: typescript },
+  ],
+  frameworks: [
+    { name: "Spring Boot", img: spring },
+    { name: "NestJS", img: nestjs },
+    { name: "Angular", img: angular },
+  ],
+  infrastructure: [
+    { name: "Docker", img: docker },
+    { name: "PostgreSQL", img: postgre },
+    { name: "AWS", img: aws },
+    { name: "Redis", img: redis },
+  ],
+  softSkills: [
+    { name: "Liderazgo", img: leadership },
+    { name: "Comunicación efectiva", img: talking },
+    { name: "Pensamiento crítico", img: think },
+  ],
+};
+
+const computeCategoriesInSpanish = (category: string) => {
+  switch (category) {
+    case "languages":
+      return "LENGUAJES";
+    case "frameworks":
+      return "FRAMEWORKS";
+    case "infrastructure":
+      return "INFRAESTRUCTURA";
+    case "softSkills":
+      return "HABILIDADES BLANDAS";
+    default:
+      return category.toUpperCase();
+  }
+};
 ---
 
 <section
@@ -138,33 +167,33 @@ const skills = [
                 <p class="text-primary">+5 años</p>
               </div>
               <!-- Skills Section -->
-              <div class="border-t border-primary pt-4">
-                <div class="flex items-center gap-2 text-foreground mb-4">
-                  <span>▸</span>
-                  <span class="font-bold">HABILIDADES TÉCNICAS</span>
-                </div>
-                <div
-                  id="skills-container"
-                  class="grid grid-cols-4 md:grid-cols-5 gap-4"
-                >
-                  {
-                    skills.map((skill, index) => (
-                      <div
-                        class={`flex flex-col items-center opacity-0`}
-                        style={`animation: fadeIn 0.5s ease forwards; animation-delay: ${index * 50}ms;`}
-                      >
-                        {skill.img && (
-                          <Image
-                            src={skill.img}
-                            alt={skill.name}
-                            class="w-12 h-12 object-contain"
-                          />
-                        )}
-                        <span class="text-xs mt-1">{skill.name}</span>
-                      </div>
-                    ))
-                  }
-                </div>
+              <div class="border-t border-primary pt-4 space-y-6">
+                {
+                  Object.entries(skills).map(([category, items]) => (
+                    <div>
+                      <p class="text-xs text-green-300 font-semibold mb-2">
+                        {computeCategoriesInSpanish(category)}
+                      </p>
+                      <ul class="space-y-4">
+                        {items.map((skill, index) => (
+                          <li
+                            class="flex items-center gap-1 opacity-0"
+                            style={`animation: fadeIn 0.5s ease forwards; animation-delay: ${index * 50}ms;`}
+                          >
+                            {skill.img && (
+                              <Image
+                                src={skill.img}
+                                alt={skill.name}
+                                class="w-4 h-4 object-contain"
+                              />
+                            )}
+                            <span class="text-sm">{skill.name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))
+                }
               </div>
             </div>
 
@@ -253,7 +282,7 @@ const skills = [
 <script is:inline>
   // Typing effect
   const typingEl = document.getElementById("typing");
-  const fullText = "Fullstack Developer // Heavy Backend";
+  const fullText = "Desarrollador fullstack especializado en backend ";
   let i = 0;
   const typingInterval = setInterval(() => {
     if (i <= fullText.length) {
