@@ -96,33 +96,34 @@ const sortedJobs = jobs.sort((a, b) => b.id - a.id);
       </h2>
 
       <div class="space-y-6">
-        {sortedJobs.map((job) => (
-          <div
-            class="border border-primary/30 bg-card p-6 hover:border-primary transition-colors"
-          >
-            <div class="space-y-4">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                <div>
-                  <h3 class="text-lg font-bold text-primary">{job.title}</h3>
-                  <p class="text-foreground">{job.company}</p>
+        {
+          sortedJobs.map((job) => (
+            <div class="border border-primary/30 bg-card p-6 hover:border-primary transition-colors rounded">
+              <div class="space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                  <div>
+                    <h3 class="text-lg font-bold text-primary">{job.title}</h3>
+                    <p class="text-foreground">{job.company}</p>
+                  </div>
+
+                  <span class="text-accent text-sm">
+                    [{job.startMonth} {job.startYear} –{" "}
+                    {job.actually
+                      ? "Presente"
+                      : `${job.endMonth} ${job.endYear}`}
+                    ]
+                  </span>
                 </div>
 
-                <span class="text-accent text-sm">
-                  [{job.startMonth} {job.startYear} –{" "}
-                  {job.actually
-                    ? "Presente"
-                    : `${job.endMonth} ${job.endYear}`}]
-                </span>
+                <ul class="hacker-list list-disc list-inside text-muted-foreground text-sm leading-relaxed space-y-1">
+                  {job.description.map((task) => (
+                    <li>{task}</li>
+                  ))}
+                </ul>
               </div>
-
-              <ul class="list-disc list-inside text-muted-foreground text-sm leading-relaxed space-y-1">
-                {job.description.map((task) => (
-                  <li>{task}</li>
-                ))}
-              </ul>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
 
       <div class="text-muted-foreground text-sm">
@@ -131,3 +132,16 @@ const sortedJobs = jobs.sort((a, b) => b.id - a.id);
     </div>
   </div>
 </section>
+
+<style is:inline>
+  ul.hacker-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul.hacker-list li::before {
+    content: "#"; /* puedes cambiarlo por cualquier símbolo ASCII */
+    color: var(--foreground);
+    margin-right: 8px;
+  }
+</style>

@@ -36,7 +36,7 @@ const socials = [
         {">"} ./contact.sh
       </h2>
 
-      <div class="border border-primary/30 bg-card p-6 md:p-8 space-y-6">
+      <div class="border border-primary/30 bg-card p-6 md:p-8 space-y-6 rounded">
         <!-- Intro -->
         <div class="space-y-4">
           <p class="text-foreground">
@@ -50,7 +50,7 @@ const socials = [
         <!-- Terminal Simulator -->
         <div
           id="terminal"
-          class="border border-primary/30 bg-background p-4 min-h-[200px] font-mono text-sm"
+          class="border border-primary/30 bg-background p-4 min-h-[200px] font-mono text-sm rounded"
         >
           <div class="space-y-2">
             <p class="text-primary">
@@ -79,7 +79,7 @@ const socials = [
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group"
+                class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group rounded"
               >
                 <div class="flex items-center gap-3">
                   <Image src={s.icon} alt={s.name} class="w-6 h-6" />
