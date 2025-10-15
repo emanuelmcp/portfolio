@@ -29,7 +29,7 @@ const menuItems = [
         </div>
       </div>
 
-      <!-- Navigation -->
+      <!-- Navigation (desktop) -->
       <div id="nav-links" class="hidden md:flex items-center gap-1">
         {
           menuItems.map((item) => (
@@ -45,18 +45,50 @@ const menuItems = [
         }
       </div>
 
-      <!-- Mobile time -->
-      <div
-        id="time-mobile"
-        class="md:hidden text-muted-foreground font-mono tabular-nums"
-      >
-        [--:--:--]
+      <!-- Mobile controls -->
+      <div class="flex md:hidden items-center gap-3">
+        <div
+          id="time-mobile"
+          class="text-muted-foreground font-mono tabular-nums"
+        >
+          [--:--:--]
+        </div>
+        <button
+          id="menu-toggle"
+          class="text-primary hover:text-primary/80 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <!-- Íconos: menu / close -->
+          <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t-2 border-primary/30 bg-background/98 backdrop-blur">
+      <div class="py-4 space-y-1">
+        {
+          menuItems.map((item) => (
+            <button
+              class="w-full text-left px-4 py-3 font-mono text-sm tracking-wide transition-all border-l-4 border-transparent text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/5"
+              data-section={item.id}
+            >
+              <span class="text-primary mr-2">{">"}</span>
+              {item.label}
+            </button>
+          ))
+        }
       </div>
     </div>
   </div>
 </nav>
 
-<!-- 🔹 Script: hora + sección activa + scroll suave -->
+<!-- 🔹 Script: hora + sección activa + scroll suave + menú móvil -->
 <script is:inline>
   // --- HORA ACTUALIZADA ---
   function updateTime() {
@@ -70,18 +102,12 @@ const menuItems = [
   setInterval(updateTime, 1000);
 
   // --- SECCIÓN ACTIVA ---
-  const sections = [
-    "hero",
-    "about",
-    "experience",
-    "projects",
-    "ai-chat",
-    "contact",
-  ];
+  const sections = ["hero", "about", "experience", "projects", "ai-chat", "contact"];
   const buttons = document.querySelectorAll("#nav-links button");
+  const mobileButtons = document.querySelectorAll("#mobile-menu button");
 
   function setActiveSection(id) {
-    buttons.forEach((btn) => {
+    [...buttons, ...mobileButtons].forEach((btn) => {
       const indicator = btn.querySelector(".indicator");
       if (btn.dataset.section === id) {
         btn.classList.add("text-primary");
@@ -96,46 +122,54 @@ const menuItems = [
   }
 
   function handleScroll() {
-    const scrollY = window.scrollY + window.innerHeight / 2; // centro de la ventana
-    let activeSet = false;
-
-    // Check sections to determine the active one
+    const scrollY = window.scrollY + window.innerHeight / 2;
     for (const id of sections) {
       const section = document.getElementById(id);
       if (!section) continue;
-
-      const offsetTop = section.offsetTop;
-      const offsetHeight = section.offsetHeight;
-
-      if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollY >= top && scrollY < top + height) {
         setActiveSection(id);
-        activeSet = true;
         break;
       }
-    }
-    // if nothing matched, don't forcefully select the first section — leave previous state
-    // (this prevents jump-to-top behavior on initial paint when offsets are not stable)
-    if (!activeSet) {
-      // no-op: keep current active button if any
-      return;
     }
   }
 
   window.addEventListener("scroll", handleScroll);
-  // Run the handler after first paint/layout to avoid incorrect offsets
-  window.addEventListener("load", () => {
-    // Give the browser one frame and a short timeout to settle layout (images, fonts)
-    requestAnimationFrame(() => setTimeout(handleScroll, 50));
-  });
+  window.addEventListener("load", () => requestAnimationFrame(() => setTimeout(handleScroll, 50)));
 
   // --- SCROLL SUAVE ---
-  buttons.forEach((btn) => {
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }
+  [...buttons, ...mobileButtons].forEach((btn) => {
     btn.addEventListener("click", () => {
-      const id = btn.dataset.section;
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+      scrollToSection(btn.dataset.section);
+      closeMobileMenu();
     });
+  });
+
+  // --- MENÚ MÓVIL ---
+  const toggleBtn = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+
+  function openMobileMenu() {
+    menu.classList.remove("hidden");
+    iconMenu.classList.add("hidden");
+    iconClose.classList.remove("hidden");
+  }
+
+  function closeMobileMenu() {
+    menu.classList.add("hidden");
+    iconMenu.classList.remove("hidden");
+    iconClose.classList.add("hidden");
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = !menu.classList.contains("hidden");
+    isOpen ? closeMobileMenu() : openMobileMenu();
   });
 </script>
