@@ -23,33 +23,6 @@ import hired from "../assets/about/hired.png";
         <div
           class="flex flex-col md:flex-row items-center md:items-start gap-10"
         >
-          <!-- Imagen con efecto de hover -->
-          <div class="relative group w-full md:w-1/3 flex-shrink-0">
-            <!-- Glow exterior -->
-            <div
-              class="absolute -inset-1 bg-gradient-to-tr from-primary/40 to-accent/40 blur opacity-60 group-hover:opacity-30 transition"
-            >
-            </div>
-
-            <!-- Imagen principal -->
-            <Image
-              src={emanuel}
-              alt="Foto de Emanuel"
-              class="relative shadow-2xl object-cover h-full mx-auto transform transition duration-500 group-hover:rotate-2 group-hover:scale-105"
-              widths={[271, 320, 480, 640, 768, 1024]}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 271px"
-              loading="lazy"
-            />
-            <!-- Sello "HIRED" -->
-            <Image
-              src={hired}
-              alt="Sello de contratado"
-              class="absolute top-1/2 left-1/2 w-[130%] max-w-none opacity-0 transform -translate-x-1/2 -translate-y-1/2 rotate-[-25deg] transition duration-700 ease-out group-hover:opacity-100 group-hover:scale-105 group-hover:rotate-[-20deg]"
-              widths={[353, 480, 640, 768, 1024]}
-              sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 353px"
-            />
-          </div>
-
           <!-- Texto -->
           <div class="flex-1 space-y-5 text-sm md:text-base leading-relaxed">
             <p class="text-foreground">
