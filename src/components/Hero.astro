@@ -26,6 +26,12 @@ const techStack = {
     { name: "Docker", icon: docker },
     { name: "AWS", icon: aws },
   ],
+
+  softSkills: [
+    { name: "Spring", icon: spring },
+    { name: "NestJS", icon: nestjs },
+    { name: "Angular", icon: angular },
+  ],
 };
 ---
 
@@ -63,55 +69,86 @@ const techStack = {
       </p>
     </div>
     <!-- Tech Stack -->
-    <div class="mt-12 max-w-3xl mx-auto border border-primary/30 rounded shadow-sm font-mono text-sm">
-      <div class="folder-header flex items-center justify-between bg-primary/10 px-3 py-1 cursor-pointer select-none">
+    <div
+      class="mt-12 max-w-3xl mx-auto border border-primary/30 rounded shadow-lg shadow-primary/10 backdrop-blur-sm bg-background/60 font-mono text-sm transition-all hover:shadow-primary/20 min-h-[72vh]"
+    >
+      <!-- Header de la ventana -->
+      <div
+        class="folder-header flex items-center justify-between bg-primary/10 px-3 py-1 cursor-pointer select-none rounded-t-xl border-b border-primary/20"
+      >
         <div class="flex items-center gap-1 min-h-6">
-          <span class="folder-icon text-accent">💀</span>
+          <span class="folder-icon text-accent text-lg animate-pulse">💀</span>
           <span class="font-semibold">TechStack.exe</span>
         </div>
         <div class="folder-controls flex gap-2">
-          <button class="w-3 h-3 rounded-full bg-red-500"></button>
-          <button class="w-3 h-3 rounded-full bg-yellow-400"></button>
-          <button class="w-3 h-3 rounded-full bg-green-500"></button>
+          <button
+            class="w-3 h-3 rounded-full bg-red-500 hover:brightness-125 transition"
+          ></button>
+          <button
+            class="w-3 h-3 rounded-full bg-yellow-400 hover:brightness-125 transition"
+          ></button>
+          <button
+            class="w-3 h-3 rounded-full bg-green-500 hover:brightness-125 transition"
+          ></button>
         </div>
       </div>
-      <!-- Contenido de la ventana -->
+
+      <!-- Contenido -->
       <div class="p-6 space-y-4 min-h-[30vh]">
         <!-- Languages -->
         <div class="folder cursor-pointer" data-folder="languages">
           <button
             class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
           >
-            <span class="folder-icon text-accent">📂</span>
+            <span
+              class="folder-icon text-accent transition-transform duration-200"
+              >📂</span
+            >
             <span class="group-hover:underline cursor-pointer">lenguajes/</span>
           </button>
-          <div class="folder-content ml-6 mt-2 space-y-1">
+          <div
+            class="folder-content ml-6 mt-2 divide-y divide-primary/10 transition-all duration-300 ease-in-out"
+          >
             {
               techStack.languages.map((tech) => (
-                <div class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <div class="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition group">
                   <span class="text-primary">├──</span>
-                  <Image src={tech.icon} alt={tech.name} class="w-4 h-4" />
+                  <Image
+                    src={tech.icon}
+                    alt={tech.name}
+                    class="w-5 h-5 opacity-80 group-hover:opacity-100 transition"
+                  />
                   <span>{tech.name}</span>
                 </div>
               ))
             }
           </div>
         </div>
+
         <!-- Frameworks -->
         <div class="folder cursor-pointer" data-folder="frameworks">
           <button
             class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
           >
-            <span class="folder-icon text-accent">📂</span>
+            <span
+              class="folder-icon text-accent transition-transform duration-200"
+              >📂</span
+            >
             <span class="group-hover:underline cursor-pointer">frameworks/</span
             >
           </button>
-          <div class="folder-content ml-6 mt-2 space-y-1">
+          <div
+            class="folder-content ml-6 mt-2 divide-y divide-primary/10 transition-all duration-300 ease-in-out"
+          >
             {
               techStack.frameworks.map((tech) => (
-                <div class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <div class="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition group">
                   <span class="text-primary">├──</span>
-                  <Image src={tech.icon} alt={tech.name} class="w-4 h-4" />
+                  <Image
+                    src={tech.icon}
+                    alt={tech.name}
+                    class="w-5 h-5 opacity-80 group-hover:opacity-100 transition"
+                  />
                   <span>{tech.name}</span>
                 </div>
               ))
@@ -124,17 +161,57 @@ const techStack = {
           <button
             class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
           >
-            <span class="folder-icon text-accent">📂</span>
+            <span
+              class="folder-icon text-accent transition-transform duration-200"
+              >📂</span
+            >
             <span class="group-hover:underline cursor-pointer"
               >infraestructura/</span
             >
           </button>
-          <div class="folder-content ml-6 mt-2 space-y-1">
+          <div
+            class="folder-content ml-6 mt-2 divide-y divide-primary/10 transition-all duration-300 ease-in-out"
+          >
             {
               techStack.infrastructure.map((tech) => (
-                <div class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <div class="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition group">
                   <span class="text-primary">├──</span>
-                  <Image src={tech.icon} alt={tech.name} class="w-4 h-4" />
+                  <Image
+                    src={tech.icon}
+                    alt={tech.name}
+                    class="w-5 h-5 opacity-80 group-hover:opacity-100 transition"
+                  />
+                  <span>{tech.name}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="folder cursor-pointer" data-folder="infrastructure">
+          <button
+            class="folder-btn flex items-center gap-2 text-primary hover:text-accent w-full text-left group transition-colors"
+          >
+            <span
+              class="folder-icon text-accent transition-transform duration-200"
+              >📂</span
+            >
+            <span class="group-hover:underline cursor-pointer"
+              >soft_skills/</span
+            >
+          </button>
+          <div
+            class="folder-content ml-6 mt-2 divide-y divide-primary/10 transition-all duration-300 ease-in-out"
+          >
+            {
+              techStack.softSkills.map((tech) => (
+                <div class="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition group">
+                  <span class="text-primary">├──</span>
+                  <Image
+                    src={tech.icon}
+                    alt={tech.name}
+                    class="w-5 h-5 opacity-80 group-hover:opacity-100 transition"
+                  />
                   <span>{tech.name}</span>
                 </div>
               ))
@@ -143,7 +220,6 @@ const techStack = {
         </div>
       </div>
     </div>
-
     <!-- Terminal Prompt -->
     <div class="text-center mt-12 text-muted-foreground text-sm">
       <p>{">"} Presiona cualquier tecla para continuar...</p>
@@ -165,6 +241,34 @@ const techStack = {
       opacity: 1;
     }
   }
+
+  /* Animación para abrir/cerrar carpetas */
+  .folder-content {
+    transform-origin: top;
+    opacity: 1;
+    max-height: 1000px;
+  }
+
+  .folder-content.hidden {
+    opacity: 0;
+    transform: scaleY(0.8);
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  /* Animación de aparición general */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 </style>
 
 <script is:inline>
@@ -178,15 +282,22 @@ const techStack = {
     if (i > text.length) clearInterval(typingInterval);
   }, 50);
 
-  // Folder toggles
+  // Animación inicial (fade-in)
+  document.querySelectorAll(".folder").forEach((folder, index) => {
+    folder.classList.add("fade-in");
+    folder.style.animationDelay = `${index * 0.1}s`;
+  });
+
+  // Folder toggle con animación
   document.querySelectorAll(".folder").forEach((folder) => {
     const btn = folder.querySelector(".folder-btn");
     const content = folder.querySelector(".folder-content");
     const icon = folder.querySelector(".folder-icon");
 
     btn.addEventListener("click", () => {
-      const open = content.classList.toggle("hidden");
-      icon.textContent = open ? "📁" : "📂";
+      const hidden = content.classList.toggle("hidden");
+      icon.textContent = hidden ? "📁" : "📂";
+      icon.classList.toggle("rotate-6");
     });
   });
 </script>
