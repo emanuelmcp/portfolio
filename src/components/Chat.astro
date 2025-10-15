@@ -4,7 +4,8 @@ interface Message {
   content: string;
   timestamp: string;
 }
-const messages: Message[] = [
+
+const initialMessages: Message[] = [
   {
     role: "user",
     content: "¿Cuál es tu experiencia con microservicios?",
@@ -27,17 +28,6 @@ const messages: Message[] = [
       "Trabajo principalmente con PostgreSQL para datos relacionales, Redis para caching y sesiones, y MongoDB para datos no estructurados. También tengo experiencia con Elasticsearch para búsquedas full-text y TimescaleDB para series temporales. Me enfoco en optimización de queries, indexación y estrategias de sharding.",
     timestamp: "14:33:45",
   },
-  {
-    role: "user",
-    content: "¿Cuál ha sido tu mayor desafío técnico?",
-    timestamp: "14:35:20",
-  },
-  {
-    role: "assistant",
-    content:
-      "Optimizar un sistema de procesamiento de pagos que tenía timeouts frecuentes. Implementé un sistema de colas con RabbitMQ, añadí circuit breakers, optimicé queries N+1, y rediseñé el esquema de base de datos. Redujimos el tiempo de respuesta de 8s a 200ms y eliminamos los timeouts por completo.",
-    timestamp: "14:35:24",
-  },
 ];
 ---
 
@@ -46,7 +36,7 @@ const messages: Message[] = [
     <div class="space-y-6">
       <div class="flex items-center justify-between">
         <h2 class="text-2xl md:text-3xl font-bold text-accent">
-          {">"} ./ai_assistant_chat.sh
+          &gt; ./ai_assistant_chat.sh
         </h2>
         <div class="flex items-center gap-2 text-xs text-muted-foreground">
           <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
@@ -54,25 +44,32 @@ const messages: Message[] = [
         </div>
       </div>
 
-      <div class="border border-primary/30 bg-card rounded">
-        {/* Chat Header */}
-          <div
-            class="folder-header flex items-center justify-between bg-primary/10 px-3 py-1 cursor-pointer select-none min-h-6"
-          >
-            <div class="flex items-center gap-1">
-              <span class="folder-icon text-accent">📝</span>
-              <span class="font-semibold">ai_assistant_2025.log</span>
-            </div>
-            <div class="folder-controls flex gap-2">
-              <button class="w-3 h-3 rounded-full bg-red-500"></button>
-              <button class="w-3 h-3 rounded-full bg-yellow-400"></button>
-              <button class="w-3 h-3 rounded-full bg-green-500"></button>
-            </div>
+      <div
+        class="border border-primary/30 bg-card rounded overflow-hidden"
+        id="chat-container"
+      >
+        <!-- Chat Header -->
+        <div
+          class="folder-header flex items-center justify-between bg-primary/10 px-3 py-1 select-none"
+        >
+          <div class="flex items-center gap-1">
+            <span class="folder-icon text-accent">📝</span>
+            <span class="font-semibold">ai_assistant_2025.log</span>
           </div>
-        {/* Chat Messages */}
-        <div class="p-6 space-y-6 max-h-[600px] overflow-y-auto">
+          <div class="folder-controls flex gap-2">
+            <button type="button" class="w-3 h-3 rounded-full bg-red-500"></button>
+            <button type="button" class="w-3 h-3 rounded-full bg-yellow-400"></button>
+            <button type="button" class="w-3 h-3 rounded-full bg-green-500"></button>
+          </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div
+          id="chat-messages"
+          class="p-6 space-y-6 max-h-[600px] overflow-y-auto scroll-smooth"
+        >
           {
-            messages.map((message) => (
+            initialMessages.map((message) => (
               <div
                 class={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
               >
@@ -81,9 +78,7 @@ const messages: Message[] = [
                 >
                   <div class="flex items-center gap-2 text-xs text-muted-foreground">
                     <span>
-                      {message.role === "user"
-                        ? "user@terminal"
-                        : "ai_assistant"}
+                      {message.role === "user" ? "user@terminal" : "ai_assistant"}
                     </span>
                     <span>•</span>
                     <span>{message.timestamp}</span>
@@ -101,50 +96,23 @@ const messages: Message[] = [
               </div>
             ))
           }
-          {/* Typing Indicator */}
-          <div class="flex gap-3 justify-start">
-            <div class="space-y-2">
-              <div
-                class="flex items-center gap-2 text-xs text-muted-foreground"
-              >
-                <span>ai_assistant</span>
-                <span>•</span>
-                <span>typing...</span>
-              </div>
-              <div class="border border-primary/30 bg-primary/5 p-4">
-                <div class="flex gap-1">
-                  <div
-                    class="w-2 h-2 bg-primary rounded-full animate-bounce"
-                    style={{ animationDelay: "0ms" }}
-                  >
-                  </div>
-                  <div
-                    class="w-2 h-2 bg-primary rounded-full animate-bounce"
-                    style={{ animationDelay: "150ms" }}
-                  >
-                  </div>
-                  <div
-                    class="w-2 h-2 bg-primary rounded-full animate-bounce"
-                    style={{ animationDelay: "300ms" }}
-                  >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        {/* Chat Input */}
+
+        <!-- Chat Input -->
         <div class="border-t border-primary/30 p-4">
           <div class="flex gap-2">
             <input
+              id="chat-input"
               type="text"
               placeholder="> Escribe tu pregunta aquí..."
               class="flex-1 border border-primary/30 bg-background px-4 py-2 text-sm text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:text-foreground rounded"
             />
             <button
-              class="border border-primary/30 bg-primary/10 px-6 py-2 text-sm text-primary hover:bg-primary/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer rounded"
+              id="chat-send"
+              type="button"
+              class="border border-primary/30 bg-primary/10 px-6 py-2 text-sm text-primary hover:bg-primary/20 transition-colors rounded cursor-pointer"
             >
-              SEND
+              ENVIAR
             </button>
           </div>
         </div>
@@ -152,3 +120,4 @@ const messages: Message[] = [
     </div>
   </div>
 </section>
+<script src="/src/scripts/chat.js"></script>

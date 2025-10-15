@@ -1,9 +1,11 @@
 // src/pages/api/chat.ts
+export const prerender = false;
+
 import type { APIRoute } from "astro";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: import.meta.env.OPENAI_API_KEY,
 });
 
 export const POST: APIRoute = async ({ request }) => {
