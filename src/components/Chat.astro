@@ -7,28 +7,26 @@ interface Message {
 
 const initialMessages: Message[] = [
   {
-    role: "user",
-    content: "¿Cuál es tu experiencia con microservicios?",
-    timestamp: "14:32:15",
-  },
-  {
     role: "assistant",
     content:
-      "Tengo amplia experiencia diseñando y desplegando arquitecturas de microservicios. He trabajado con Docker, Kubernetes, y patrones como API Gateway, Circuit Breaker y Event Sourcing. En mi último proyecto, migré un monolito a 12 microservicios que manejan 2M+ requests diarios.",
+      "Este asistente de IA está aquí para ayudarte. Está alimentado con información sobre mis proyectos y habilidades. ¡No dudes en hacer cualquier pregunta!",
     timestamp: "14:32:18",
   },
-  {
-    role: "user",
-    content: "¿Qué bases de datos dominas?",
-    timestamp: "14:33:42",
-  },
-  {
-    role: "assistant",
-    content:
-      "Trabajo principalmente con PostgreSQL para datos relacionales, Redis para caching y sesiones, y MongoDB para datos no estructurados. También tengo experiencia con Elasticsearch para búsquedas full-text y TimescaleDB para series temporales. Me enfoco en optimización de queries, indexación y estrategias de sharding.",
-    timestamp: "14:33:45",
-  },
 ];
+
+const placeHolderSelection = [
+  "¿Qué tecnologías usaste en tu portfolio?",
+  "¿Puedes contarme más sobre tu experiencia con Java?",
+  "¿Cuál fue el mayor desafío que enfrentaste en un proyecto?",
+  "¿Cómo manejas la colaboración en equipo?",
+  "¿Qué te motiva a seguir aprendiendo nuevas tecnologías?",
+];
+
+
+const getRandomPlaceholder = () => {
+  const randomIndex = Math.floor(Math.random() * placeHolderSelection.length);
+  return placeHolderSelection[randomIndex];
+};
 ---
 
 <section id="ai-chat" class="py-20 px-4 border-t border-primary/30">
@@ -104,7 +102,7 @@ const initialMessages: Message[] = [
             <input
               id="chat-input"
               type="text"
-              placeholder="> Escribe tu pregunta aquí..."
+              placeholder={getRandomPlaceholder()}
               class="flex-1 border border-primary/30 bg-background px-4 py-2 text-sm text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:text-foreground rounded"
             />
             <button
