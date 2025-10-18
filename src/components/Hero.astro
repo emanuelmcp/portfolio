@@ -243,72 +243,69 @@ const computeCategoriesInSpanish = (category: string) => {
         </div>
       </div>
     </div>
-
-    <style>
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.8);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      /* Terminal cursor blink */
-      .terminal-cursor {
-        animation: blink 1s step-end infinite;
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
-      }
-    </style>
-
-    <script is:inline>
-      // Typing effect
-      const typingEl = document.getElementById("typing");
-      const fullText = "Desarrollador fullstack especializado en backend ";
-      let i = 0;
-      const typingInterval = setInterval(() => {
-        if (i <= fullText.length) {
-          typingEl.textContent = fullText.slice(0, i);
-          i++;
-        } else {
-          clearInterval(typingInterval);
-        }
-      }, 50);
-
-      // Progress bar
-      const progressBar = document.getElementById("progress-bar");
-      const progressText = document.getElementById("progress-text");
-      const loadingScreen = document.getElementById("loading-screen");
-      const dossier = document.getElementById("dossier");
-      let progress = 0;
-
-      const progressInterval = setInterval(() => {
-        if (progress >= 100) {
-          clearInterval(progressInterval);
-          setTimeout(() => {
-            loadingScreen.classList.add("hidden");
-            dossier.classList.remove("hidden");
-
-            // Animar los logos
-            document
-              .querySelectorAll("#skills-container > div")
-              .forEach((el) => {
-                el.classList.remove("opacity-0");
-              });
-          }, 300);
-        } else {
-          progress += 2;
-          progressBar.style.width = progress + "%";
-          progressText.textContent = progress + "%";
-        }
-      }, 30);
-    </script>
   </div>
 </section>
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Terminal cursor blink */
+  .terminal-cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Typing effect
+  const typingEl = document.getElementById("typing");
+  const fullText = "Desarrollador fullstack especializado en backend ";
+  let i = 0;
+  const typingInterval = setInterval(() => {
+    if (i <= fullText.length) {
+      typingEl.textContent = fullText.slice(0, i);
+      i++;
+    } else {
+      clearInterval(typingInterval);
+    }
+  }, 50);
+
+  // Progress bar
+  const progressBar = document.getElementById("progress-bar");
+  const progressText = document.getElementById("progress-text");
+  const loadingScreen = document.getElementById("loading-screen");
+  const dossier = document.getElementById("dossier");
+  let progress = 0;
+
+  const progressInterval = setInterval(() => {
+    if (progress >= 100) {
+      clearInterval(progressInterval);
+      setTimeout(() => {
+        loadingScreen.classList.add("hidden");
+        dossier.classList.remove("hidden");
+
+        // Animar los logos
+        document.querySelectorAll("#skills-container > div").forEach((el) => {
+          el.classList.remove("opacity-0");
+        });
+      }, 300);
+    } else {
+      progress += 2;
+      progressBar.style.width = progress + "%";
+      progressText.textContent = progress + "%";
+    }
+  }, 30);
+</script>
