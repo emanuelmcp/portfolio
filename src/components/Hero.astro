@@ -18,24 +18,36 @@ import hired from "../assets/about/hired.png";
 
 const skills = {
   languages: [
-    { name: "Java", img: java },
-    { name: "TypeScript", img: typescript },
+    { name: "Java", alt: "Logo de Java", img: java },
+    { name: "TypeScript", alt: "Logo de TypeScript", img: typescript },
   ],
   frameworks: [
-    { name: "Spring Boot", img: spring },
-    { name: "NestJS", img: nestjs },
-    { name: "Angular", img: angular },
+    { name: "Spring Boot", alt: "Logo de Spring Boot", img: spring },
+    { name: "NestJS", alt: "Logo de NestJS", img: nestjs },
+    { name: "Angular", alt: "Logo de Angular", img: angular },
   ],
   infrastructure: [
-    { name: "Docker", img: docker },
-    { name: "PostgreSQL", img: postgre },
-    { name: "AWS", img: aws },
-    { name: "Redis", img: redis },
+    { name: "Docker", alt: "Logo de Docker", img: docker },
+    { name: "PostgreSQL", alt: "Logo de PostgreSQL", img: postgre },
+    { name: "AWS", alt: "Logo de AWS", img: aws },
+    { name: "Redis", alt: "Logo de Redis", img: redis },
   ],
   softSkills: [
-    { name: "Liderazgo", img: leadership },
-    { name: "Comunicación efectiva", img: talking },
-    { name: "Pensamiento crítico", img: think },
+    {
+      name: "Liderazgo",
+      alt: "Icono que representa el liderazgo",
+      img: leadership,
+    },
+    {
+      name: "Comunicación efectiva",
+      alt: "Icono que representa la comunicación efectiva",
+      img: talking,
+    },
+    {
+      name: "Pensamiento crítico",
+      alt: "Icono que representa el pensamiento crítico",
+      img: think,
+    },
   ],
 };
 
@@ -184,7 +196,7 @@ const computeCategoriesInSpanish = (category: string) => {
                             {skill.img && (
                               <Image
                                 src={skill.img}
-                                alt={skill.name}
+                                alt={skill.alt}
                                 class="w-4 h-4 object-contain"
                               />
                             )}
