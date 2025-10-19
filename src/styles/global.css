@@ -116,12 +116,7 @@
 }
 
 .terminal-cursor::after {
-  content: "▋";
-  animation: flicker 1s infinite;
-}
-
-.terminal-cursor::after {
-  content: "|";
+  content: "";
   animation: blink 1s step-start infinite;
 }
 
@@ -130,7 +125,6 @@
     opacity: 0;
   }
 }
-
 
 /* === Scrollbar personalizada global === */
 ::-webkit-scrollbar {
