@@ -9,7 +9,7 @@ const projects = [
     link: "https://ronin-demo.netlify.app",
   },
   {
-    title: "Portfolio Personal",
+    title: "Portfolio personal",
     description:
       "Portfolio personal con un diseño original inspirado en terminales Unix. Implementado con Astro y TailwindCSS, optimizado para SEO y rendimiento.",
     tech: ["Typescript", "Astro", "TailwindCSS"],
@@ -17,40 +17,23 @@ const projects = [
     link: "https://github.com/emanuelmcp/portfolio",
   },
   {
-    title: "Microservices Auth System",
+    title: "Huvibrais S.L",
     description:
-      "Sistema de autenticación centralizado para arquitectura de microservicios. JWT, OAuth2, y rate limiting.",
-    tech: ["Go", "PostgreSQL", "Redis", "gRPC"],
-    status: "Production",
-    link: "#",
+      "Landing page coroporativa para una empresa de protección pasiva contra incendios. Diseño limpio y profesional, con énfasis en la posibilidad de que el cliente pueda actualizar el contenido fácilmente.",
+    tech: ["Wordpress"],
+    status: "EN PRODUCCIÓN",
+    link: "https://huvibrais.com",
   },
   {
-    title: "GraphQL Gateway",
+    title: "PixelCore",
     description:
-      "API Gateway con GraphQL que unifica múltiples servicios REST. Caching inteligente y batching de queries.",
-    tech: ["Node.js", "GraphQL", "Apollo", "Redis"],
-    status: "Beta",
-    link: "#",
-  },
-  {
-    title: "Log Aggregation Service",
-    description:
-      "Servicio de agregación y análisis de logs distribuidos. Procesamiento de +1M eventos/minuto.",
-    tech: ["Python", "Kafka", "Elasticsearch", "Kibana"],
-    status: "Production",
-    link: "#",
-  },
-  {
-    title: "Database Migration Tool",
-    description:
-      "Herramienta CLI para migraciones de bases de datos con rollback automático y validación de esquemas.",
-    tech: ["Go", "PostgreSQL", "MySQL", "CLI"],
-    status: "Open Source",
-    link: "#",
+      "Plugin de Minecraft de un servidor survival basado en el juego de GTA Online. Incluye sistemas de economía, trabajos, misiones y más.",
+    tech: ["Java", "PostgreSQL", "PaperMC"],
+    status: "EN DESARROLLO",
+    link: "https://github.com/emanuelmcp/pixel-core",
   },
 ];
 ---
-
 <section id="projects" class="py-20 px-4 border-t border-primary/30">
   <div class="container mx-auto max-w-6xl">
     <div class="space-y-8">
@@ -59,56 +42,55 @@ const projects = [
       </h2>
 
       <div class="grid md:grid-cols-2 gap-6">
-        {
-          projects.map((project, index) => (
-            <div class="border border-primary/30 bg-card p-6 hover:border-primary hover:bg-primary/5 transition-all group rounded">
-              <div class="space-y-4">
-                <div class="flex items-start justify-between gap-4">
-                  <h3 class="text-lg font-bold text-primary group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <span
-                    class={`text-xs px-2 py-1 border whitespace-nowrap ${
-                      project.status === "EN PRODUCCIÓN"
-                        ? "border-primary text-primary bg-primary/10"
-                        : project.status === "EN DESARROLLO"
-                          ? "border-accent text-accent bg-accent/10"
-                          : "border-muted-foreground text-muted-foreground"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
+  {
+    projects.map((project, index) => (
+      <div class="border border-primary/30 bg-card p-6 hover:border-primary hover:bg-primary/5 transition-all group rounded flex flex-col">
+        <!-- Contenido principal -->
+        <div class="space-y-4 flex-grow">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-bold text-primary group-hover:text-accent transition-colors">
+              {project.title}
+            </h3>
+            <span
+              class={`text-xs px-2 py-1 border whitespace-nowrap ${
+                project.status === "EN PRODUCCIÓN"
+                  ? "border-primary text-primary bg-primary/10"
+                  : project.status === "EN DESARROLLO"
+                    ? "border-accent text-accent bg-accent/10"
+                    : "border-muted-foreground text-muted-foreground"
+              }`}
+            >
+              {project.status}
+            </span>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            {project.description}
+          </p>
 
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div class="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span class="text-xs px-2 py-1 border border-primary/20 text-foreground">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div class="pt-2">
-                  <a
-                    href={project.link}
-                    class="text-sm text-accent hover:text-primary transition-colors inline-flex items-center gap-2"
-                  >
-                    {">"} Ver detalles
-                    <span class="group-hover:translate-x-1 transition-transform">
-                      →
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))
-        }
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map((tech) => (
+              <span class="text-xs px-2 py-1 border border-primary/20 text-foreground">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+        <!-- Enlace siempre al fondo -->
+        <div class="pt-4 mt-auto">
+          <a
+            href={project.link}
+            class="text-sm text-accent hover:text-primary transition-colors inline-flex items-center gap-2"
+          >
+            Ver detalles
+            <span class="group-hover:translate-x-1 transition-transform">
+              →
+            </span>
+          </a>
+        </div>
       </div>
-
+    ))
+  }
+  </div>
       <div class="text-center text-muted-foreground text-sm mt-8">
         <p>{">"} Más proyectos disponibles en GitHub...</p>
       </div>
