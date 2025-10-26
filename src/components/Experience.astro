@@ -1,0 +1,147 @@
+---
+const jobs = [
+  {
+    id: 1,
+    title: "Fullstack developer",
+    company: "ARANOVA",
+    startMonth: "Septiembre",
+    startYear: 2022,
+    endMonth: "Junio",
+    endYear: 2023,
+    description: [
+      "Proponer, diseñar y empezar a implementar una arquitectura de microservicios por problemas de escalabilidad y repetición de código, minimizando así la duplicación de código y costes.",
+      "Ayudar en la compilación de código legacy hecho en Spring Boot.",
+    ],
+  },
+  {
+    id: 2,
+    title: "Fullstack developer analyst",
+    company: "ARANOVA",
+    startMonth: "Junio",
+    startYear: 2023,
+    endMonth: "Enero",
+    endYear: 2024,
+    description: [
+      "Diseño y elección adecuada según las necesidades del cliente final de bases de datos relacionales y no relacionales.",
+      "Aplicación de patrones de diseño para alargar la vida útil del software.",
+      "Implementación de un flujo de trabajo organizado mediante issues, protección de la rama principal, revisión de pull requests y testing (coverage mínimo aceptable - 80%).",
+      "Propuesta y puesta en marcha de un sistema CI/CD mediante GitHub Actions.",
+      "Implementación del protocolo gRPC para optimizar la comunicación entre microservicios y propiciar el abaratamiento de costes.",
+      "Migración de ciertas partes de código a TypeScript para beneficiarse del procesamiento asíncrono con BullMQ.",
+      "Promoción del uso de NestJS para reducir la curva de aprendizaje del equipo proveniente de Spring.",
+      "Creación de librerías para frontend y adopción de NuxtJS para mantener homogeneidad en el código.",
+    ],
+  },
+  {
+    id: 3,
+    title: "Software Engineer II",
+    company: "INDRA",
+    startMonth: "Enero",
+    startYear: 2024,
+    endMonth: "Julio",
+    endYear: 2024,
+    description: [
+      "Dockerización de aplicaciones para optimizar tiempos de onboarding y evitar conflictos de versiones.",
+      "Resolución de incidencias para garantizar el correcto funcionamiento del software.",
+      "Creación de documentación técnica.",
+      "Análisis y evaluación de requerimientos para un desarrollo óptimo y a medida.",
+      "Trabajo en equipo y mentoría técnica.",
+    ],
+    actually: true,
+  },
+  {
+    id: 4,
+    title: "Senior Software Engineer",
+    company: "ITERIAM",
+    startMonth: "Julio",
+    startYear: 2024,
+    endMonth: "Febrero",
+    endYear: 2025,
+    description: [
+      "Ejerzo funciones de líder técnico en un equipo de 5 personas, asesorando a mis compañeros en el ecosistema de Spring Boot con el ORM MyBatis.",
+      "Optimicé el tiempo de desarrollo mediante la implementación de MyBatis Generator, aumentando significativamente la productividad del equipo.",
+      "Asigno tareas considerando las fortalezas y debilidades de cada miembro para maximizar el ritmo de desarrollo.",
+      "Desarrollo código bajo un sistema CI/CD basado en Jenkins, garantizando un coverage del 80% con JUnit y Mockito.",
+      "Diseño y desarrollo de APIs REST siguiendo un enfoque API First dentro de una arquitectura de microservicios.",
+      "Desbloqueo y mentorizo tanto a desarrolladores junior como senior, promoviendo buenas prácticas de ingeniería.",
+      "Participo en reuniones con el líder técnico y arquitectos para definir soluciones de arquitectura eficientes y escalables.",
+    ],
+  },
+  {
+    id: 5,
+    title: "Senior Consultant",
+    company: "CAPGEMINI",
+    startMonth: "Febrero",
+    startYear: 2025,
+    description: [
+      "Implementé una herramienta de generación de código para optimizar el tiempo de desarrollo del equipo.",
+      "Desarrollé componentes en un microservicio para traducir mensajes del formato MT a MX (ISO 20022), cumpliendo con regulaciones clave del sistema bancario SWIFT.",
+      "Utilicé AWS CloudWatch para investigar y resolver incidencias reportadas por el cliente, mejorando la estabilidad del sistema.",
+      "Automaticé la gestión de conexiones a bases de datos, facilitando el trabajo tanto del equipo funcional como del equipo de desarrollo.",
+      "Mejoré mis habilidades de testing automatizado con JUnit y Mockito, aumentando la cobertura de pruebas y reduciendo los bugs detectados por QA.",
+    ],
+    actually: true,
+  },
+];
+
+// Orden descendente (últimos trabajos primero)
+const sortedJobs = jobs.sort((a, b) => b.id - a.id);
+---
+
+<section id="experience" class="py-20 px-4 border-t border-primary/30">
+  <div class="container mx-auto max-w-6xl">
+    <div class="space-y-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-accent">
+        {">"} cat experience.log
+      </h2>
+
+      <div class="space-y-6">
+        {
+          sortedJobs.map((job) => (
+            <div class="border border-primary/30 bg-card p-6 hover:border-primary transition-colors rounded">
+              <div class="space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                  <div>
+                    <h3 class="text-lg font-bold text-primary">{job.title}</h3>
+                    <p class="text-foreground">{job.company}</p>
+                  </div>
+
+                  <span class="text-accent text-sm">
+                    [{job.startMonth} {job.startYear} –{" "}
+                    {job.actually
+                      ? "Presente"
+                      : `${job.endMonth} ${job.endYear}`}
+                    ]
+                  </span>
+                </div>
+
+                <ul class="hacker-list list-disc list-inside text-muted-foreground text-sm leading-relaxed space-y-1">
+                  {job.description.map((task) => (
+                    <li>{task}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="text-muted-foreground text-sm">
+        <p>{">"} Total de líneas de código escritas: [REDACTED]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:inline>
+  ul.hacker-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul.hacker-list li::before {
+    content: "#"; /* puedes cambiarlo por cualquier símbolo ASCII */
+    color: var(--foreground);
+    margin-right: 8px;
+  }
+</style>

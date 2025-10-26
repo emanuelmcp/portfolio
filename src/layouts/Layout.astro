@@ -1,0 +1,25 @@
+---
+import AppFooter from "../components/AppFooter.astro";
+import AppNav from "../components/AppNav.astro";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Portfolio de Emanuel Carrero - Desarrollador Fullstack" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Emanuel Carrero</title>
+	</head>
+	<body>
+		<div class="min-h-screen bg-background">
+			<AppNav />
+			<main class="font-mono">
+				<slot />
+			</main>
+			<AppFooter />
+		</div>
+	</body>
+</html>

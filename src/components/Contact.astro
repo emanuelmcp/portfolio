@@ -1,0 +1,174 @@
+---
+import { Image } from "astro:assets";
+import github from "../assets/contact/github.png";
+import linkedin from "../assets/contact/linkedin.png";
+import mail from "../assets/contact/mail.png";
+import smartphone from "../assets/contact/smartphone.png";
+
+const socials = [
+  {
+    name: "Email",
+    alt: "Icono de correo electrónico",
+    url: "emanuelmcp@gmail.com",
+    icon: mail,
+  },
+  {
+    name: "GitHub",
+    alt: "Icono de GitHub",
+    url: "https://github.com/emanuelmcp",
+    icon: github,
+  },
+  {
+    name: "LinkedIn",
+    alt: "Icono de LinkedIn",
+    url: "https://www.linkedin.com/in/emanuel-carrero/",
+    icon: linkedin,
+  },
+];
+---
+
+<section id="contact" class="py-20 px-4 border-t border-primary/30">
+  <div class="container mx-auto max-w-6xl">
+    <div class="space-y-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-accent">
+        {">"} ./contact.sh
+      </h2>
+
+      <div
+        class="border border-primary/30 bg-card p-6 md:p-8 space-y-6 rounded"
+      >
+        <!-- Intro -->
+        <div class="space-y-4">
+          <p class="text-foreground">
+            {">"} Interesado en colaborar o tienes un proyecto en mente?
+          </p>
+          <p class="text-muted-foreground text-sm">
+            Siempre abierto a discutir nuevas oportunidades y desafíos técnicos.
+          </p>
+        </div>
+
+        <!-- Terminal Simulator -->
+        <div
+          id="terminal"
+          class="border border-primary/30 bg-background p-4 min-h-[200px] max-h-[200px] overflow-y-auto font-mono text-sm rounded"
+        >
+          <div class="space-y-2">
+            <p class="text-primary">
+              {">"} Terminal Interactivo - Escribe 'help' para ver los comandos
+            </p>
+            <div class="h-px bg-primary/30 my-2"></div>
+            <div id="terminal-output"></div>
+            <form id="terminal-form" class="flex items-center gap-2">
+              <label for="terminal-input" class="sr-only">Terminal command input</label>
+              <span class="text-primary">$</span>
+              <input
+                id="terminal-input"
+                type="text"
+                class="flex-1 bg-transparent border-none outline-none text-foreground"
+                placeholder="type a command..."
+              />
+            </form>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="grid md:grid-cols-3 gap-4 pt-4">
+          {
+            socials.map((s) => (
+              <a
+                href={s.url.includes("@") ? `mailto:${s.url}` : s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="border border-primary/30 p-4 hover:border-primary hover:bg-primary/5 transition-all group rounded"
+              >
+                <div class="flex items-center gap-3">
+                  <Image src={s.icon} alt={s.alt} class="w-6 h-6" />
+                  <div>
+                    <p class="text-sm text-accent font-medium">{s.name}</p>
+                    <p class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                      {s.name === "Email"
+                        ? "Enviar correo"
+                        : s.name === "GitHub"
+                          ? "Ver perfil"
+                          : s.name === "LinkedIn"
+                            ? "Conectar"
+                            : ""}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="text-center text-muted-foreground text-sm">
+          <p>{">"} Conexión establecida. Esperando respuesta...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔹 Script JS puro para terminal -->
+    <script is:inline>
+      const outputEl = document.getElementById("terminal-output");
+      const form = document.getElementById("terminal-form");
+      const input = document.getElementById("terminal-input");
+      let output = [];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const command = input.value.trim();
+        if (!command) return;
+
+        // Añadir comando al output
+        output.push(`$ ${command}`);
+
+        // Comandos predefinidos
+        const cmd = command.toLowerCase();
+        if (cmd.includes("email")) output.push("📧 developer@backend.dev");
+        else if (cmd.includes("github"))
+          output.push("🐙 github.com/yourhandle");
+        else if (cmd.includes("linkedin"))
+          output.push("💼 linkedin.com/in/yourprofile");
+        else if (cmd.includes("twitter"))
+          output.push("🐦 twitter.com/yourhandle");
+        else if (cmd === "help")
+          output.push(
+            "Comandos disponibles: email, github, linkedin, twitter, clear"
+          );
+        else if (cmd === "clear") {
+          output = [];
+          input.value = "";
+          renderOutput();
+          return;
+        } else
+          output.push(
+            `Comando no encontrado: ${command}. Escribe 'help' para ver los comandos disponibles.`
+          );
+
+        input.value = "";
+        renderOutput();
+      });
+
+      function renderOutput() {
+        outputEl.innerHTML = "";
+        output.forEach((line) => {
+          const p = document.createElement("p");
+          p.textContent = line;
+          p.className = line.startsWith("$")
+            ? "text-accent"
+            : "text-muted-foreground";
+          outputEl.appendChild(p);
+        });
+
+        // 🔹 Forzar scroll hacia abajo con suavidad
+        requestAnimationFrame(() => {
+          const terminal = document.getElementById("terminal");
+          terminal.scrollTo({
+            top: terminal.scrollHeight,
+            behavior: "smooth",
+          });
+        });
+      }
+    </script>
+  </div>
+</section>

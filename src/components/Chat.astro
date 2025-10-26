@@ -1,0 +1,122 @@
+---
+interface Message {
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+}
+
+const initialMessages: Message[] = [
+  {
+    role: "assistant",
+    content:
+      "Este asistente de IA está aquí para ayudarte. Está alimentado con información sobre mis proyectos y habilidades. ¡No dudes en hacer cualquier pregunta!",
+    timestamp: "14:32:18",
+  },
+];
+
+const placeHolderSelection = [
+  "¿Qué tecnologías usaste en tu portfolio?",
+  "¿Puedes contarme más sobre tu experiencia con Java?",
+  "¿Cuál fue el mayor desafío que enfrentaste en un proyecto?",
+  "¿Cómo manejas la colaboración en equipo?",
+  "¿Qué te motiva a seguir aprendiendo nuevas tecnologías?",
+];
+
+
+const getRandomPlaceholder = () => {
+  const randomIndex = Math.floor(Math.random() * placeHolderSelection.length);
+  return placeHolderSelection[randomIndex];
+};
+---
+
+<section id="ai-chat" class="py-20 px-4 border-t border-primary/30">
+  <div class="container mx-auto max-w-6xl">
+    <div class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl md:text-3xl font-bold text-accent">
+          &gt; ./ai_assistant_chat.sh
+        </h2>
+        <div class="flex items-center gap-2 text-xs text-muted-foreground">
+          <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+          <span>AI Assistant Online</span>
+        </div>
+      </div>
+
+      <div
+        class="border border-primary/30 bg-card rounded overflow-hidden"
+        id="chat-container"
+      >
+        <!-- Chat Header -->
+        <div
+          class="folder-header flex items-center justify-between bg-primary/10 px-3 py-1 select-none"
+        >
+          <div class="flex items-center gap-1">
+            <span class="folder-icon text-accent">📝</span>
+            <span class="font-semibold">ai_assistant_2025.log</span>
+          </div>
+          <div class="folder-controls flex gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+          </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div
+          id="chat-messages"
+          class="p-6 space-y-6 min-h-[600px] max-h-[600px] overflow-y-auto scroll-smooth"
+        >
+          {
+            initialMessages.map((message) => (
+              <div
+                class={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  class={`max-w-[80%] space-y-2 ${message.role === "user" ? "order-2" : "order-1"}`}
+                >
+                  <div class="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span>
+                      {message.role === "user" ? "user@ghost" : "alter_ego@emanuel"}
+                    </span>
+                    <span>•</span>
+                    <span>{message.timestamp}</span>
+                  </div>
+                  <div
+                    class={`border p-4 text-sm leading-relaxed rounded ${
+                      message.role === "user"
+                        ? "border-accent bg-accent/10 text-foreground"
+                        : "border-primary/30 bg-primary/5 text-foreground"
+                    }`}
+                  >
+                    <p>{message.content}</p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Chat Input -->
+        <div class="border-t border-primary/30 p-4">
+          <div class="flex gap-2">
+            <label for="chat-input" class="sr-only">Chat input</label>
+            <input
+              id="chat-input"
+              type="text"
+              placeholder={getRandomPlaceholder()}
+              class="flex-1 border border-primary/30 bg-background px-4 py-2 text-sm text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:text-foreground rounded"
+            />
+            <button
+              id="chat-send"
+              type="button"
+              class="border border-primary/30 bg-primary/10 px-6 py-2 text-sm text-primary hover:bg-primary/20 transition-colors rounded cursor-pointer"
+            >
+              ENVIAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/src/scripts/chat.js"></script>
